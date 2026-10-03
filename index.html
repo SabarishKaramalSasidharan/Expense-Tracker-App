@@ -258,6 +258,99 @@
     }
     table.responsive .empty-row td { display: block; text-align: center; }
   }
+
+  .overlay .modal-box { margin: auto; }
+  .me-btn { background: none; border: none; color: #cfe0f1; font-size: 13px; font-weight: 600; min-height: auto; padding: 0 0 0 10px; cursor: pointer; text-decoration: underline; }
+  #periodLabel { cursor: pointer; }
+
+  .sum-delta { font-size: 12px; font-weight: 600; min-height: 18px; margin-top: 2px; }
+  .sum-delta.up, .legend-delta.up { color: var(--danger); }
+  .sum-delta.down, .legend-delta.down { color: var(--accent); }
+  .sum-delta.flat, .legend-delta.flat { color: var(--muted); }
+  .sum-top > div:last-child { text-align: right; }
+
+  .trend-card { min-height: 212px; }
+  .trend-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+  .trend-title, .panel-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); font-weight: 600; margin: 0; }
+  .panel-title { margin-bottom: 12px; }
+  .trend-peak { font-size: 12px; color: var(--muted); }
+  .bars { display: flex; align-items: flex-end; gap: 3px; height: 110px; }
+  .bar-col { flex: 1; min-width: 0; height: 100%; min-height: 0; padding: 0; background: none; border-radius: 4px; display: flex; align-items: flex-end; }
+  .bar-col span { display: block; width: 100%; background: var(--accent); border-radius: 4px 4px 0 0; opacity: 0.55; }
+  .bar-col.now span { opacity: 1; }
+  .bar-col.zero span { background: var(--line); opacity: 1; }
+  .bar-labels { display: flex; gap: 3px; margin-top: 6px; }
+  .bar-labels span { flex: 1; min-width: 0; display: flex; justify-content: center; font-size: 10px; color: var(--muted); white-space: nowrap; }
+  .day-list { display: flex; flex-direction: column; gap: 12px; }
+  .day-row { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+  .day-row .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .day-row .amt { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .day-more { font-size: 12px; color: var(--muted); }
+
+  .legend-row { cursor: pointer; border-radius: 8px; }
+  .legend-row:active { background: #f6f8fb; }
+  .legend-main { flex: 1; min-width: 0; }
+  .legend-head { display: flex; align-items: center; gap: 8px; }
+  .legend-nm { flex: 1; min-width: 0; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bud { margin-top: 6px; }
+  .bud-track { height: 6px; background: #eef1f5; border-radius: 6px; overflow: hidden; }
+  .bud-fill { height: 100%; background: var(--accent); border-radius: 6px; }
+  .bud-fill.warn { background: #d99a1c; }
+  .bud-fill.over { background: var(--danger); }
+  .bud-text { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .bud-text.over { color: var(--danger); font-weight: 600; }
+  .legend-delta { font-size: 11px; margin-top: 2px; }
+  .toggle-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin: -8px 4px 20px; cursor: pointer; }
+  .toggle-row input { width: 18px; height: 18px; }
+  .person-row { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-bottom: 10px; }
+  .person-row:last-child { margin-bottom: 0; }
+  .person-name { width: 92px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .person-track { flex: 1; height: 8px; background: #eef1f5; border-radius: 6px; overflow: hidden; }
+  .person-fill { height: 100%; background: var(--navy-2); border-radius: 6px; }
+  .person-amt { font-weight: 600; font-variant-numeric: tabular-nums; min-width: 76px; text-align: right; }
+
+  .subtabs { display: flex; gap: 6px; margin-bottom: 14px; }
+  .subtabs button { flex: 1; background: #eef1f5; color: var(--muted); border-radius: 10px; padding: 9px 6px; font-size: 13px; min-height: 40px; }
+  .subtabs button.active { background: var(--navy); color: #fff; }
+  .sub-panel { display: none; }
+  .sub-panel.active { display: block; }
+  .filters input[type=search] { width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 16px; font-family: inherit; margin-bottom: 8px; background: #fff; color: var(--ink); }
+  .filter-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .filter-row select { width: 100%; min-width: 0; padding: 10px 6px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; font-family: inherit; background: #fff; color: var(--ink); }
+  .list-summary { display: flex; justify-content: space-between; align-items: center; margin: 10px 2px; font-size: 13px; color: var(--muted); }
+  .tag { display: inline-block; font-size: 11px; color: var(--muted); background: #eef1f5; border-radius: 10px; padding: 1px 8px; margin: 3px 4px 0 0; }
+  .tx-note { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .tx-by { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .section-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .section-head .lead { font-size: 13px; color: var(--muted); }
+  .item-card { background: #fff; border: 1px solid #eef1f5; border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(11,31,58,0.06); }
+  .item-card.paused { opacity: 0.6; }
+  .ic-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .ic-title { font-weight: 700; color: var(--navy); }
+  .ic-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .ic-actions { display: flex; align-items: center; flex-shrink: 0; }
+  .goal-bar { height: 8px; background: #eef1f5; border-radius: 6px; overflow: hidden; margin: 12px 0 6px; }
+  .goal-bar > div { height: 100%; background: var(--accent); border-radius: 6px; }
+  .btn-small { padding: 8px 14px; min-height: 36px; font-size: 13px; }
+  .hint { font-size: 12px; color: var(--muted); margin: 0 0 12px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+  .chip { background: #eef1f5; color: var(--ink); border-radius: 16px; padding: 6px 12px; min-height: 34px; font-size: 13px; font-weight: 600; }
+  .chip.active { background: var(--accent); color: #fff; }
+  .amount-field input { font-size: 28px; font-weight: 700; }
+  details.field summary { cursor: pointer; font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+  details.field input { margin-bottom: 8px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom));
+    transform: translateX(-50%) translateY(16px); background: var(--navy); color: #fff;
+    padding: 10px 14px; border-radius: 10px; display: flex; align-items: center; gap: 14px;
+    font-size: 14px; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+    z-index: 70; max-width: calc(100% - 28px); box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%); pointer-events: auto; }
+  .toast button { background: none; color: #7fe0c3; padding: 4px 6px; min-height: auto; }
 </style>
 </head>
 <body>
@@ -301,7 +394,7 @@ service cloud.firestore {
 <div id="app">
 <header>
   <h1>Expense Tracker</h1>
-  <p id="asof"><span class="sync-dot" id="syncDot"></span><span id="syncLabel">Connecting…</span></p>
+  <p id="asof"><span class="sync-dot" id="syncDot"></span><span id="syncLabel">Connecting…</span><button class="me-btn" id="meBtn"></button></p>
 </header>
 
 <div class="wrap">
@@ -321,6 +414,14 @@ service cloud.firestore {
 
     <div class="sum-card" id="summary"></div>
 
+    <div class="panel trend-card">
+      <div class="trend-head">
+        <div class="trend-title" id="trendTitle"></div>
+        <div class="trend-peak" id="trendPeak"></div>
+      </div>
+      <div id="trend"></div>
+    </div>
+
     <div class="panel chart-card">
       <div class="donut-wrap">
         <div class="donut" id="donut"></div>
@@ -332,6 +433,13 @@ service cloud.firestore {
       <div class="chart-legend" id="chartLegend"></div>
     </div>
 
+    <label class="toggle-row" id="rolloverRow"><input type="checkbox" id="rolloverToggle" /> Roll over unused budget to the next month</label>
+
+    <div class="panel" id="personPanel" hidden>
+      <h3 class="panel-title">Who spent</h3>
+      <div id="personRows"></div>
+    </div>
+
     <div class="note" id="syncNote">
       <button class="note-close" id="noteClose" aria-label="Dismiss">&times;</button>
       <strong>Shared, synced data:</strong> every add/edit/delete here writes to a shared Firestore database — both phones see the same list, updated live. Anyone who opens this page is signed in anonymously and can read/write, so don't share the link outside your household.
@@ -340,25 +448,54 @@ service cloud.firestore {
   </div>
 
   <div id="tab-transactions" class="tab-panel">
-    <div class="toolbar">
-      <div class="field">
-        <label for="monthFilter">Month</label>
-        <select id="monthFilter"></select>
-      </div>
-      <button class="btn-text" id="exportBtn">Export CSV</button>
+    <div class="subtabs" role="tablist">
+      <button class="active" data-sub="list">Expenses</button>
+      <button data-sub="recurring">Recurring</button>
+      <button data-sub="goals">Goals</button>
     </div>
-    <table id="txTable" class="responsive">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Amount</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="txRows"></tbody>
-    </table>
+
+    <div id="sub-list" class="sub-panel active">
+      <div class="filters">
+        <input type="search" id="searchInput" placeholder="Search description, tag, note, amount" aria-label="Search expenses" />
+        <div class="filter-row">
+          <select id="monthFilter" aria-label="Month"></select>
+          <select id="catFilter" aria-label="Category"></select>
+          <select id="personFilter" aria-label="Person"></select>
+        </div>
+      </div>
+      <div class="list-summary">
+        <span id="listCount"></span>
+        <button class="btn-text" id="exportBtn">Export CSV</button>
+      </div>
+      <table id="txTable" class="responsive">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="txRows"></tbody>
+      </table>
+    </div>
+
+    <div id="sub-recurring" class="sub-panel">
+      <div class="section-head">
+        <div class="lead" id="recurringTotal"></div>
+        <button class="btn-primary btn-small" id="addRecurringBtn">+ Add</button>
+      </div>
+      <div id="recurringList"></div>
+    </div>
+
+    <div id="sub-goals" class="sub-panel">
+      <div class="section-head">
+        <div class="lead" id="goalsTotal"></div>
+        <button class="btn-primary btn-small" id="addGoalBtn">+ Add goal</button>
+      </div>
+      <div id="goalsList"></div>
+    </div>
   </div>
 
   <footer>Hosted on GitHub Pages · data synced via Firebase Firestore</footer>
@@ -380,12 +517,13 @@ service cloud.firestore {
 <div class="overlay" id="formOverlay">
   <div class="modal-box form-box">
     <h2 class="modal-title" id="formTitle">Add expense</h2>
-    <div class="field">
-      <label for="date">Date</label>
-      <input type="date" id="date" />
+    <div class="field amount-field">
+      <label for="amount">Amount (₹)</label>
+      <input type="number" id="amount" min="0" step="1" inputmode="decimal" placeholder="0" />
     </div>
     <div class="field">
       <label for="category">Category</label>
+      <div class="chips" id="catChips"></div>
       <select id="category"></select>
     </div>
     <div class="field" id="customCategoryWrap" style="display:none;">
@@ -397,9 +535,18 @@ service cloud.firestore {
       <input type="text" id="desc" placeholder="e.g. Weekly groceries" />
     </div>
     <div class="field">
-      <label for="amount">Amount (₹)</label>
-      <input type="number" id="amount" min="0" step="1" placeholder="0" />
+      <label for="date">Date</label>
+      <div class="chips">
+        <button type="button" class="chip" id="dateToday">Today</button>
+        <button type="button" class="chip" id="dateYesterday">Yesterday</button>
+      </div>
+      <input type="date" id="date" />
     </div>
+    <details class="field" id="moreDetails">
+      <summary>Tags &amp; note</summary>
+      <input type="text" id="tags" placeholder="Tags, comma separated (e.g. trip, gift)" />
+      <input type="text" id="note" placeholder="Note" />
+    </details>
     <div class="form-error" id="formError"></div>
     <div class="modal-actions">
       <button class="btn-secondary" id="cancelEditBtn">Cancel</button>
@@ -432,10 +579,70 @@ service cloud.firestore {
   </div>
 </div>
 
+<div class="overlay" id="nameOverlay">
+  <div class="modal-box">
+    <p><strong>Who's using this phone?</strong><br><span style="color:var(--muted);font-size:13px;">Your name is saved with each expense you add, so the household can see who spent what.</span></p>
+    <div class="field" style="margin-bottom:4px;">
+      <input type="text" id="nameInput" maxlength="20" placeholder="Your name" />
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="nameSkip">Later</button>
+      <button class="btn-primary" id="nameSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="recOverlay">
+  <div class="modal-box form-box">
+    <h2 class="modal-title" id="recTitle">Add recurring expense</h2>
+    <div class="field"><label for="recName">Name</label><input type="text" id="recName" placeholder="e.g. Netflix" /></div>
+    <div class="field"><label for="recCategory">Category</label><select id="recCategory"></select></div>
+    <div class="field"><label for="recAmount">Amount (₹)</label><input type="number" id="recAmount" min="0" step="1" inputmode="decimal" placeholder="0" /></div>
+    <div class="field"><label for="recDay">Day of month (1-31)</label><input type="number" id="recDay" min="1" max="31" step="1" inputmode="numeric" placeholder="5" /></div>
+    <p class="hint">Posts automatically on this day each month, starting from the next due date. If this month's is already paid, add it manually once.</p>
+    <div class="form-error" id="recError"></div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="recCancel">Cancel</button>
+      <button class="btn-primary" id="recSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="goalOverlay">
+  <div class="modal-box form-box">
+    <h2 class="modal-title" id="goalTitle">Add savings goal</h2>
+    <div class="field"><label for="goalName">Goal</label><input type="text" id="goalName" placeholder="e.g. Emergency fund" /></div>
+    <div class="field"><label for="goalTarget">Target amount (₹)</label><input type="number" id="goalTarget" min="0" step="1" inputmode="decimal" placeholder="0" /></div>
+    <div class="field"><label for="goalDeadline">Target date (optional)</label><input type="date" id="goalDeadline" /></div>
+    <div class="form-error" id="goalError"></div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="goalCancel">Cancel</button>
+      <button class="btn-primary" id="goalSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="moneyOverlay">
+  <div class="modal-box">
+    <p id="moneyTitle">Add money</p>
+    <div class="field" style="margin-bottom:4px;">
+      <input type="number" id="moneyAmount" min="0" step="1" inputmode="decimal" placeholder="Amount (₹)" />
+    </div>
+    <div class="form-error" id="moneyError"></div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="moneyCancel">Cancel</button>
+      <button class="btn-secondary" id="moneyWithdraw">Withdraw</button>
+      <button class="btn-primary" id="moneyAdd">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"><span id="toastMsg"></span><button id="toastAction"></button></div>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
   import {
-    getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, setDoc,
+    getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, setDoc, runTransaction, increment,
     onSnapshot, query, orderBy, serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
   import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
@@ -521,6 +728,15 @@ service cloud.firestore {
     let salariesByMonth = {};
     let editingId = null;
     let txUnsubscribe = null;
+    let recurring = [];
+    let goals = [];
+    let prefs = { rollover: false };
+    const USER_KEY = "expenseTrackerUserName";
+    let me = localStorage.getItem(USER_KEY) || "";
+    const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    const startOfDay = d => { const r = new Date(d); r.setHours(0, 0, 0, 0); return r; };
+    const DAY_MS = 86400000;
 
     const syncNote = document.getElementById("syncNote");
     if (localStorage.getItem("syncNoteDismissed") === "1") {
@@ -548,36 +764,70 @@ service cloud.firestore {
       const [y, m] = key.split("-").map(Number);
       return new Date(y, m - 1, 1).toLocaleDateString("en-IN", { month: "long", year: "numeric" });
     }
-    function allMonthKeys() {
-      const keys = new Set(transactions.map(t => t.date.slice(0, 7)));
-      keys.add(currentMonthKey(today));
-      return Array.from(keys).sort().reverse();
-    }
-    function populateMonthFilter() {
-      const sel = document.getElementById("monthFilter");
-      const prevValue = sel.value || currentMonthKey(today);
-      const keys = allMonthKeys();
-      sel.innerHTML = keys.map(k => `<option value="${k}">${monthLabel(k)}</option>`).join("");
-      sel.value = keys.includes(prevValue) ? prevValue : keys[0];
-    }
-
     let lastUsedCategory = categories[0].name;
+
+    function setDateChips() {
+      const v = dateInput.value;
+      const y = new Date(); y.setDate(y.getDate() - 1);
+      document.getElementById("dateToday").classList.toggle("active", v === ymd(new Date()));
+      document.getElementById("dateYesterday").classList.toggle("active", v === ymd(y));
+    }
+    function setCatChips() {
+      document.querySelectorAll("#catChips .chip").forEach(c => c.classList.toggle("active", c.dataset.cat === categorySelect.value));
+    }
+    function renderCatChips() {
+      const cutoff = ymd(new Date(Date.now() - 90 * DAY_MS));
+      const stats = {};
+      transactions.filter(t => t.date >= cutoff).forEach(t => {
+        const s = stats[t.category] || (stats[t.category] = { n: 0, last: "" });
+        s.n++;
+        if (t.date > s.last) s.last = t.date;
+      });
+      const known = new Set(categories.map(c => c.name));
+      let names = Object.keys(stats).filter(n => known.has(n))
+        .sort((a, b) => stats[b].n - stats[a].n || stats[b].last.localeCompare(stats[a].last));
+      categories.forEach(c => { if (names.length < 5 && !names.includes(c.name)) names.push(c.name); });
+      document.getElementById("catChips").innerHTML = names.slice(0, 5)
+        .map(n => `<button type="button" class="chip" data-cat="${esc(n)}">${esc(n)}</button>`).join("");
+      setCatChips();
+    }
+    document.getElementById("catChips").addEventListener("click", (e) => {
+      const chip = e.target.closest("[data-cat]");
+      if (!chip) return;
+      categorySelect.value = chip.dataset.cat;
+      categorySelect.dispatchEvent(new Event("change"));
+    });
+    categorySelect.addEventListener("change", setCatChips);
+    dateInput.addEventListener("change", setDateChips);
+    document.getElementById("dateToday").addEventListener("click", () => { dateInput.value = ymd(new Date()); setDateChips(); });
+    document.getElementById("dateYesterday").addEventListener("click", () => {
+      const y = new Date(); y.setDate(y.getDate() - 1);
+      dateInput.value = ymd(y);
+      setDateChips();
+    });
 
     function resetForm() {
       editingId = null;
       document.getElementById("desc").value = "";
       document.getElementById("amount").value = "";
+      document.getElementById("tags").value = "";
+      document.getElementById("note").value = "";
+      document.getElementById("moreDetails").open = false;
       document.getElementById("customCategory").value = "";
       document.getElementById("customCategoryWrap").style.display = "none";
       categorySelect.value = lastUsedCategory;
-      dateInput.value = today.toISOString().slice(0, 10);
+      dateInput.value = ymd(new Date());
       document.getElementById("formError").style.display = "none";
+      setCatChips();
+      setDateChips();
     }
 
     const formOverlay = document.getElementById("formOverlay");
 
     function openForm() {
+      renderCatChips();
       formOverlay.classList.add("show");
+      setTimeout(() => document.getElementById("amount").focus(), 60);
     }
     function closeForm() {
       resetForm();
@@ -601,8 +851,11 @@ service cloud.firestore {
     document.querySelectorAll(".nav-item").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
 
     // ---------- Home tab: period-based dashboard ----------
-    let periodType = "month";
+    const PERIODS = ["day", "week", "month", "year"];
+    const PREV_LABEL = { day: "yesterday", week: "last week", month: "last month", year: "last year" };
+    let periodType = PERIODS.includes(localStorage.getItem("periodType")) ? localStorage.getItem("periodType") : "month";
     let periodAnchor = new Date(today);
+    let trendBars = [];
 
     function startOfWeek(d) {
       const r = new Date(d);
@@ -615,8 +868,13 @@ service cloud.firestore {
       const r = new Date(d);
       if (type === "day") r.setDate(r.getDate() + n);
       else if (type === "week") r.setDate(r.getDate() + 7 * n);
-      else if (type === "month") r.setMonth(r.getMonth() + n);
-      else r.setFullYear(r.getFullYear() + n);
+      else {
+        // clamp the day so e.g. 31 Jan + 1 month lands in Feb, not March
+        const day = r.getDate();
+        r.setDate(1);
+        if (type === "month") r.setMonth(r.getMonth() + n); else r.setFullYear(r.getFullYear() + n);
+        r.setDate(Math.min(day, new Date(r.getFullYear(), r.getMonth() + 1, 0).getDate()));
+      }
       return r;
     }
     function getPeriodRange(type, anchor) {
@@ -624,7 +882,7 @@ service cloud.firestore {
       if (type === "day") {
         start = new Date(anchor); start.setHours(0, 0, 0, 0);
         end = addPeriod(start, "day", 1);
-        label = start.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+        label = start.toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
       } else if (type === "week") {
         start = startOfWeek(anchor);
         end = addPeriod(start, "week", 1);
@@ -642,11 +900,36 @@ service cloud.firestore {
       return { start, end, label };
     }
 
-    function buildSummaryCards(range, periodTx, totalSpent) {
+    const txIn = (range) => { const s = ymd(range.start), e = ymd(range.end); return transactions.filter(t => t.date >= s && t.date < e); };
+    const sumOf = (list) => list.reduce((s, t) => s + t.amount, 0);
+
+    // Previous period; when the current one is still running, compare like-for-like up to the same day.
+    function previousRange(range) {
+      const full = getPeriodRange(periodType, addPeriod(range.start, periodType, -1));
+      const now = new Date();
+      let end = full.end, partial = false;
+      if (periodType !== "day" && now >= range.start && now < range.end) {
+        const elapsed = Math.round((startOfDay(now) - range.start) / DAY_MS) + 1;
+        const cut = new Date(full.start); cut.setDate(cut.getDate() + elapsed);
+        if (cut < end) end = cut;
+        partial = true;
+      }
+      return { start: full.start, end, partial };
+    }
+    function deltaInfo(cur, prev) {
+      if (!(prev > 0)) return null;
+      const d = (cur - prev) / prev;
+      const cls = Math.abs(d) < 0.005 ? "flat" : (d > 0 ? "up" : "down");
+      return { cls, text: `${d > 0.005 ? "▲" : d < -0.005 ? "▼" : "•"} ${Math.abs(d * 100).toFixed(0)}%` };
+    }
+
+    function buildSummaryCards(range, periodTx, totalSpent, prevSpent, partial) {
       const stat = (k, v, cls = "", extra = "") => `<div class="sum-stat"><div class="k">${k}${extra}</div><div class="v ${cls}">${v}</div></div>`;
       const n = periodTx.length;
       let income = null, barPct = 0, over = false, caption = "", mid, right, incomeStat;
       const left = stat("Transactions", n);
+      const dl = deltaInfo(totalSpent, prevSpent);
+      const delta = dl ? `<div class="sum-delta ${dl.cls}">${dl.text} vs ${PREV_LABEL[periodType]}${partial ? " at this point" : ""}</div>` : `<div class="sum-delta"></div>`;
 
       if (periodType === "month" || periodType === "year") {
         if (periodType === "month") {
@@ -673,37 +956,41 @@ service cloud.firestore {
           mid = incomeStat;
           right = stat(over ? "Over by" : "Remaining", inr(Math.abs(rem)), over ? "over" : "good");
           caption = over ? "Spending exceeded income" : (caption || `${pct(rem / income)} left`);
+          const now = new Date();
+          if (periodType === "month" && !over && now >= range.start && now < range.end) {
+            const daysLeft = Math.round((range.end - startOfDay(now)) / DAY_MS);
+            caption += ` · ${inr(rem / daysLeft)}/day safe to spend`;
+          }
         } else {
           mid = incomeStat;
           right = stat("Remaining", "—");
           caption = periodType === "month" ? "Tap the pencil to set this month's salary" : "Set salaries in Month view";
         }
-        return sumHtml(totalSpent, income != null ? `of ${inr(income)}` : "", barPct, over, caption, [left, mid, right]);
+        return sumHtml(totalSpent, income != null ? `of ${inr(income)}` : "", delta, barPct, over, caption, [left, mid, right]);
       }
 
       const top = {};
       periodTx.forEach(t => { top[t.category] = (top[t.category] || 0) + t.amount; });
       const topCat = Object.entries(top).sort((a, b) => b[1] - a[1])[0];
-      const topStat = stat("Top category", topCat ? topCat[0] : "—");
-      if (periodType === "week") {
-        mid = stat("Avg / day", inr(totalSpent / 7));
-      } else {
-        mid = stat("Largest", n ? inr(Math.max(...periodTx.map(t => t.amount))) : "—");
-      }
-      const monthSalary = salariesByMonth[monthKeyLocal(range.start)];
+      const topStat = stat("Top category", topCat ? esc(topCat[0]) : "—");
+      mid = periodType === "week"
+        ? stat("Avg / day", inr(totalSpent / 7))
+        : stat("Largest", n ? inr(Math.max(...periodTx.map(t => t.amount))) : "—");
+      const salaryMonth = periodType === "week" ? periodAnchor : range.start;
+      const monthSalary = salariesByMonth[monthKeyLocal(salaryMonth)];
       if (typeof monthSalary === "number" && monthSalary > 0) {
         barPct = Math.min(100, (totalSpent / monthSalary) * 100);
-        caption = `${pct(totalSpent / monthSalary)} of ${range.start.toLocaleDateString("en-IN", { month: "short" })} salary`;
+        caption = `${pct(totalSpent / monthSalary)} of ${salaryMonth.toLocaleDateString("en-IN", { month: "short" })} salary`;
       } else {
         caption = "Set the month's salary to see this as a share of it";
       }
-      return sumHtml(totalSpent, "", barPct, false, caption, [left, mid, topStat]);
+      return sumHtml(totalSpent, "", delta, barPct, false, caption, [left, mid, topStat]);
     }
 
-    function sumHtml(spent, of, barPct, over, caption, stats) {
+    function sumHtml(spent, of, delta, barPct, over, caption, stats) {
       return `
         <div class="sum-top">
-          <div><div class="sum-label">Spent</div><div class="sum-value">${inr(spent)}</div></div>
+          <div><div class="sum-label">Spent</div><div class="sum-value">${inr(spent)}</div>${delta}</div>
           <div class="sum-of">${of}</div>
         </div>
         <div class="sum-bar ${over ? "over" : ""}"><div style="width:${barPct}%"></div></div>
@@ -711,6 +998,71 @@ service cloud.firestore {
         <div class="sum-stats">${stats.join("")}</div>
       `;
     }
+
+    function buildTrend(range, periodTx) {
+      const el = document.getElementById("trend");
+      const title = document.getElementById("trendTitle");
+      const peakEl = document.getElementById("trendPeak");
+      trendBars = [];
+
+      if (periodType === "day") {
+        title.textContent = "Biggest expenses";
+        peakEl.textContent = "";
+        const rows = periodTx.slice().sort((a, b) => b.amount - a.amount);
+        el.innerHTML = rows.length ? `<div class="day-list">${rows.slice(0, 4).map(t => `
+            <div class="day-row"><span class="color-dot" style="background:${catColor(t.category)}"></span><span class="nm">${esc(t.description || t.category)}</span><span class="amt">${inr(t.amount)}</span></div>`).join("")}
+            ${rows.length > 4 ? `<div class="day-more">+${rows.length - 4} more in Transactions</div>` : ""}</div>`
+          : `<div class="legend-empty">Nothing spent this day.</div>`;
+        return;
+      }
+
+      const byDay = {}, byMonth = {};
+      periodTx.forEach(t => { byDay[t.date] = (byDay[t.date] || 0) + t.amount; byMonth[t.date.slice(0, 7)] = (byMonth[t.date.slice(0, 7)] || 0) + t.amount; });
+      const nowD = new Date();
+      const buckets = [];
+      const dayFmt = { weekday: "short", day: "numeric", month: "short" };
+      if (periodType === "week" || periodType === "month") {
+        const count = Math.round((range.end - range.start) / DAY_MS);
+        const names = ["M", "T", "W", "T", "F", "S", "S"];
+        title.textContent = "Daily spending";
+        for (let i = 0; i < count; i++) {
+          const d = addPeriod(range.start, "day", i);
+          const key = ymd(d);
+          buckets.push({
+            label: periodType === "week" ? names[i] : (i % 7 === 0 ? String(i + 1) : ""),
+            value: byDay[key] || 0, isNow: key === ymd(nowD), date: d, aria: d.toLocaleDateString("en-IN", dayFmt)
+          });
+        }
+      } else {
+        title.textContent = "Monthly spending";
+        const year = range.start.getFullYear();
+        for (let m = 0; m < 12; m++) {
+          const d = new Date(year, m, 1);
+          buckets.push({
+            label: "JFMAMJJASOND"[m], value: byMonth[monthKeyLocal(d)] || 0,
+            isNow: monthKeyLocal(d) === monthKeyLocal(nowD), date: d, aria: d.toLocaleDateString("en-IN", { month: "short", year: "numeric" })
+          });
+        }
+      }
+      trendBars = buckets;
+      const peak = buckets.reduce((a, b) => (b.value > a.value ? b : a), buckets[0]);
+      peakEl.textContent = peak.value > 0 ? `Peak ${peak.aria} · ${inr(peak.value)}` : "No spending";
+      el.innerHTML = `
+        <div class="bars">${buckets.map((b, i) => `
+          <button class="bar-col ${b.isNow ? "now" : ""} ${b.value <= 0 ? "zero" : ""}" data-bar="${i}" aria-label="${esc(b.aria)}: ${inr(b.value)}"><span style="height:${b.value > 0 ? Math.max(4, (b.value / peak.value) * 100) : 2}%"></span></button>`).join("")}</div>
+        <div class="bar-labels">${buckets.map(b => `<span>${b.label}</span>`).join("")}</div>`;
+    }
+
+    document.getElementById("trend").addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-bar]");
+      if (!btn || !trendBars.length) return;
+      const b = trendBars[Number(btn.dataset.bar)];
+      periodType = periodType === "year" ? "month" : "day";
+      periodAnchor = new Date(b.date);
+      localStorage.setItem("periodType", periodType);
+      renderPeriodSwitch();
+      renderHome();
+    });
 
     function buildDonut(rows, total) {
       const donut = document.getElementById("donut");
@@ -728,30 +1080,56 @@ service cloud.firestore {
       donut.style.background = `conic-gradient(${stops.join(",")})`;
     }
 
+    // Envelope-style carry-forward: unspent budget rolls into the next month, overspend doesn't go negative.
+    function computeRollovers(monthStart) {
+      const out = {};
+      if (!transactions.length) return out;
+      const first = transactions.reduce((m, t) => (t.date < m ? t.date : m), transactions[0].date);
+      const byMC = {};
+      transactions.forEach(t => { const k = t.date.slice(0, 7) + "|" + t.category; byMC[k] = (byMC[k] || 0) + t.amount; });
+      categories.forEach(c => {
+        if (c.target == null) return;
+        let y = Number(first.slice(0, 4)), m = Number(first.slice(5, 7)) - 1, bal = 0;
+        while (y < monthStart.getFullYear() || (y === monthStart.getFullYear() && m < monthStart.getMonth())) {
+          bal = Math.max(0, bal + c.target - (byMC[`${y}-${String(m + 1).padStart(2, "0")}|${c.name}`] || 0));
+          if (++m > 11) { m = 0; y++; }
+        }
+        out[c.name] = bal;
+      });
+      return out;
+    }
+
     function renderHome() {
       const range = getPeriodRange(periodType, periodAnchor);
       document.getElementById("periodLabel").textContent = range.label;
+      document.getElementById("periodNext").disabled = range.end > new Date();
 
-      const periodTx = transactions.filter(t => {
-        const d = new Date(t.date + "T00:00:00");
-        return d >= range.start && d < range.end;
-      });
-      const totalSpent = periodTx.reduce((s, t) => s + t.amount, 0);
+      const periodTx = txIn(range);
+      const totalSpent = sumOf(periodTx);
+      const prev = previousRange(range);
+      const prevTx = txIn(prev);
 
-      document.getElementById("summary").innerHTML = buildSummaryCards(range, periodTx, totalSpent);
+      document.getElementById("summary").innerHTML = buildSummaryCards(range, periodTx, totalSpent, sumOf(prevTx), prev.partial);
+      buildTrend(range, periodTx);
 
-      const spentByCat = {};
+      const spentByCat = {}, prevByCat = {};
       periodTx.forEach(t => { spentByCat[t.category] = (spentByCat[t.category] || 0) + t.amount; });
+      prevTx.forEach(t => { prevByCat[t.category] = (prevByCat[t.category] || 0) + t.amount; });
       const targetMap = {};
       categories.forEach(c => { targetMap[c.name] = c.target; });
 
       const months = periodType === "year" ? 12 : 1;
+      const rolls = periodType === "month" && prefs.rollover ? computeRollovers(range.start) : {};
+      document.getElementById("rolloverRow").style.display = periodType === "month" ? "flex" : "none";
+      document.getElementById("rolloverToggle").checked = !!prefs.rollover;
+
       const rows = Array.from(new Set([...categories.map(c => c.name), ...Object.keys(spentByCat)]))
         .map(name => {
           const spent = spentByCat[name] || 0;
           const rawTarget = targetMap[name] ?? null;
-          const target = (periodType === "month" || periodType === "year") && rawTarget != null ? rawTarget * months : null;
-          return { name, spent, target };
+          const rolled = rolls[name] || 0;
+          const target = (periodType === "month" || periodType === "year") && rawTarget != null ? rawTarget * months + rolled : null;
+          return { name, spent, target, rolled, prevSpent: prevByCat[name] || 0 };
         })
         .filter(r => r.spent > 0 || (periodType === "month" && r.target != null))
         .sort((a, b) => b.spent - a.spent);
@@ -759,36 +1137,96 @@ service cloud.firestore {
       buildDonut(rows.filter(r => r.spent > 0), totalSpent);
 
       document.getElementById("chartLegend").innerHTML = rows.length ? rows.map(r => {
-        const over = r.target != null && r.spent > r.target;
+        let bud = "";
+        if (r.target != null) {
+          const p = r.target > 0 ? (r.spent / r.target) * 100 : 0;
+          const over = r.spent > r.target;
+          bud = `
+            <div class="bud">
+              <div class="bud-track"><div class="bud-fill ${over ? "over" : (p >= 80 ? "warn" : "")}" style="width:${Math.min(100, p)}%"></div></div>
+              <div class="bud-text ${over ? "over" : ""}">${over ? `Over by ${inr(r.spent - r.target)} · ` : ""}${inr(r.spent)} of ${inr(r.target)}${r.rolled > 0 ? ` · incl. ${inr(r.rolled)} rolled over` : ""}</div>
+            </div>`;
+        }
+        const dl = r.spent > 0 ? deltaInfo(r.spent, r.prevSpent) : null;
         return `
-          <div class="legend-row">
-            <div class="legend-name">
-              <span class="color-dot" style="background:${catColor(r.name)}"></span>
-              <span>${r.name}${over ? `<div class="legend-over">Over budget</div>` : ""}</span>
+          <div class="legend-row" data-cat="${esc(r.name)}" role="button" tabindex="0">
+            <div class="legend-main">
+              <div class="legend-head">
+                <span class="color-dot" style="background:${catColor(r.name)}"></span>
+                <span class="legend-nm">${esc(r.name)}</span>
+                <span class="legend-amt">${inr(r.spent)}</span>
+                <span class="legend-pct">${totalSpent > 0 ? pct(r.spent / totalSpent) : "0.0%"}</span>
+              </div>
+              ${bud}
+              ${dl ? `<div class="legend-delta ${dl.cls}">${dl.text} vs ${PREV_LABEL[periodType]}</div>` : ""}
             </div>
-            <div class="legend-amt">${inr(r.spent)}</div>
-            <div class="legend-pct">${totalSpent > 0 ? pct(r.spent / totalSpent) : "0.0%"}</div>
-          </div>
-        `;
+          </div>`;
       }).join("") : `<div class="legend-empty">No spending recorded for ${range.label}.</div>`;
+
+      const byPerson = {};
+      periodTx.forEach(t => { const n = t.addedBy || "Unknown"; byPerson[n] = (byPerson[n] || 0) + t.amount; });
+      const people = Object.entries(byPerson).sort((a, b) => b[1] - a[1]);
+      document.getElementById("personPanel").hidden = people.length < 2;
+      document.getElementById("personRows").innerHTML = people.map(([name, amt]) => `
+        <div class="person-row">
+          <span class="person-name">${esc(name)}</span>
+          <div class="person-track"><div class="person-fill" style="width:${totalSpent > 0 ? (amt / totalSpent) * 100 : 0}%"></div></div>
+          <span class="person-amt">${inr(amt)}</span>
+        </div>`).join("");
     }
+
+    document.getElementById("chartLegend").addEventListener("click", (e) => {
+      const row = e.target.closest("[data-cat]");
+      if (!row) return;
+      const range = getPeriodRange(periodType, periodAnchor);
+      filt.month = periodType === "year" ? "all" : monthKeyLocal(range.start);
+      filt.cat = row.dataset.cat;
+      filt.person = "all";
+      searchInput.value = "";
+      showTab("transactions");
+      setSub("list");
+      renderTransactions();
+    });
+
+    document.getElementById("rolloverToggle").addEventListener("change", async (e) => {
+      try {
+        await setDoc(doc(db, "settings", "prefs"), { rollover: e.target.checked }, { merge: true });
+      } catch (err) {
+        e.target.checked = !!prefs.rollover;
+        alert("Couldn't save: " + err.message);
+      }
+    });
 
     function renderPeriodSwitch() {
       document.querySelectorAll(".period-switch button").forEach(b => b.classList.toggle("active", b.dataset.period === periodType));
     }
+    renderPeriodSwitch();
     document.querySelectorAll(".period-switch button").forEach(b => b.addEventListener("click", () => {
       periodType = b.dataset.period;
+      localStorage.setItem("periodType", periodType);
       renderPeriodSwitch();
       renderHome();
     }));
-    document.getElementById("periodPrev").addEventListener("click", () => {
-      periodAnchor = addPeriod(periodAnchor, periodType, -1);
+    function stepPeriod(n) {
+      periodAnchor = addPeriod(periodAnchor, periodType, n);
       renderHome();
-    });
-    document.getElementById("periodNext").addEventListener("click", () => {
-      periodAnchor = addPeriod(periodAnchor, periodType, 1);
-      renderHome();
-    });
+    }
+    document.getElementById("periodPrev").addEventListener("click", () => stepPeriod(-1));
+    document.getElementById("periodNext").addEventListener("click", () => stepPeriod(1));
+    document.getElementById("periodLabel").addEventListener("click", () => { periodAnchor = new Date(); renderHome(); });
+
+    let touchStart = null;
+    const homeEl = document.getElementById("tab-home");
+    homeEl.addEventListener("touchstart", (e) => { const t = e.touches[0]; touchStart = { x: t.clientX, y: t.clientY }; }, { passive: true });
+    homeEl.addEventListener("touchend", (e) => {
+      if (!touchStart) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - touchStart.x, dy = t.clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) < 60 || Math.abs(dx) < 2 * Math.abs(dy)) return;
+      if (dx > 0) stepPeriod(-1);
+      else if (!document.getElementById("periodNext").disabled) stepPeriod(1);
+    }, { passive: true });
 
     // Salary edit modal (event delegation since #summary is rebuilt on every render)
     const salaryOverlay = document.getElementById("salaryOverlay");
@@ -828,16 +1266,56 @@ service cloud.firestore {
     });
 
     // ---------- Transactions tab ----------
+    const filt = { month: monthKeyLocal(today), cat: "all", person: "all" };
+    const searchInput = document.getElementById("searchInput");
+    const monthSel = document.getElementById("monthFilter");
+    const catSel = document.getElementById("catFilter");
+    const personSel = document.getElementById("personFilter");
+    const personOf = t => t.addedBy || "Unknown";
+
+    function setSub(name) {
+      document.querySelectorAll(".subtabs button").forEach(b => b.classList.toggle("active", b.dataset.sub === name));
+      ["list", "recurring", "goals"].forEach(n => document.getElementById("sub-" + n).classList.toggle("active", n === name));
+    }
+    document.querySelectorAll(".subtabs button").forEach(b => b.addEventListener("click", () => setSub(b.dataset.sub)));
+
+    function fillSelect(sel, options, value) {
+      sel.innerHTML = options.map(o => `<option value="${esc(o.v)}">${esc(o.l)}</option>`).join("");
+      sel.value = options.some(o => o.v === value) ? value : options[0].v;
+      return sel.value;
+    }
+    function getFilteredTx() {
+      const terms = searchInput.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      return transactions.filter(t => {
+        if (filt.month !== "all" && t.date.slice(0, 7) !== filt.month) return false;
+        if (filt.cat !== "all" && t.category !== filt.cat) return false;
+        if (filt.person !== "all" && personOf(t) !== filt.person) return false;
+        if (terms.length) {
+          const hay = [t.description, t.category, t.note, personOf(t), String(t.amount), ...(t.tags || [])].join(" ").toLowerCase();
+          if (!terms.every(w => hay.includes(w))) return false;
+        }
+        return true;
+      });
+    }
+
     function renderTransactions() {
-      populateMonthFilter();
-      const selectedMonth = document.getElementById("monthFilter").value;
-      const monthTx = transactions.filter(t => t.date.slice(0, 7) === selectedMonth);
-      const sorted = monthTx.slice().sort((a, b) => b.date.localeCompare(a.date));
-      document.getElementById("txRows").innerHTML = sorted.length ? sorted.map(t => `
+      const months = Array.from(new Set([...transactions.map(t => t.date.slice(0, 7)), monthKeyLocal(today)])).sort().reverse();
+      filt.month = fillSelect(monthSel, [{ v: "all", l: "All months" }, ...months.map(k => ({ v: k, l: monthLabel(k) }))], filt.month);
+      const cats = Array.from(new Set([...categories.map(c => c.name), ...transactions.map(t => t.category)]));
+      filt.cat = fillSelect(catSel, [{ v: "all", l: "All categories" }, ...cats.map(c => ({ v: c, l: c }))], filt.cat);
+      const people = Array.from(new Set(transactions.map(personOf))).sort();
+      filt.person = fillSelect(personSel, [{ v: "all", l: "Everyone" }, ...people.map(p => ({ v: p, l: p }))], filt.person);
+
+      const rows = getFilteredTx().sort((a, b) => b.date.localeCompare(a.date) || ((b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)));
+      document.getElementById("listCount").textContent = `${rows.length} transaction${rows.length === 1 ? "" : "s"} · ${inr(sumOf(rows))}`;
+      document.getElementById("txRows").innerHTML = rows.length ? rows.map(t => `
         <tr>
           <td data-label="Date">${new Date(t.date + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</td>
-          <td data-label="Category"><span class="cat-tag" style="background:${catColor(t.category)}22; color:${catColor(t.category)}">${t.category}</span></td>
-          <td data-label="Description">${t.description || "—"}</td>
+          <td data-label="Category"><span class="cat-tag" style="background:${catColor(t.category)}22; color:${catColor(t.category)}">${esc(t.category)}</span></td>
+          <td data-label="Description"><div>${esc(t.description) || "—"}
+            ${(t.tags || []).length ? `<div>${t.tags.map(g => `<span class="tag">#${esc(g)}</span>`).join("")}</div>` : ""}
+            ${t.note ? `<div class="tx-note">${esc(t.note)}</div>` : ""}
+            ${t.addedBy ? `<div class="tx-by">by ${esc(t.addedBy)}</div>` : ""}</div></td>
           <td data-label="Amount" class="amt">${inr(t.amount)}</td>
           <td data-label="">
             <button class="icon-btn" data-edit="${t.id}" aria-label="Edit">
@@ -848,7 +1326,7 @@ service cloud.firestore {
             </button>
           </td>
         </tr>
-      `).join("") : `<tr class="empty-row"><td colspan="5">No transactions for ${monthLabel(selectedMonth)}.</td></tr>`;
+      `).join("") : `<tr class="empty-row"><td colspan="5">No transactions match these filters.</td></tr>`;
     }
 
     function render() {
@@ -856,12 +1334,40 @@ service cloud.firestore {
       renderTransactions();
     }
 
+    monthSel.addEventListener("change", () => { filt.month = monthSel.value; renderTransactions(); });
+    catSel.addEventListener("change", () => { filt.cat = catSel.value; renderTransactions(); });
+    personSel.addEventListener("change", () => { filt.person = personSel.value; renderTransactions(); });
+    searchInput.addEventListener("input", renderTransactions);
+
+    // ---------- Toast with undo ----------
+    let toastTimer = null;
+    function showToast(msg, actionLabel, action) {
+      const t = document.getElementById("toast");
+      const btn = document.getElementById("toastAction");
+      document.getElementById("toastMsg").textContent = msg;
+      btn.textContent = actionLabel || "";
+      btn.style.display = actionLabel ? "" : "none";
+      btn.onclick = async () => {
+        t.classList.remove("show");
+        if (!action) return;
+        try { await action(); } catch (e) { alert("Couldn't undo: " + e.message); }
+      };
+      t.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove("show"), 6000);
+    }
+
+    // ---------- Add / edit expense ----------
+    const parseTags = v => Array.from(new Set(v.split(",").map(s => s.trim().replace(/^#/, "")).filter(Boolean)));
+
     document.getElementById("saveBtn").addEventListener("click", async () => {
       const date = dateInput.value;
       let category = categorySelect.value;
       if (category === "__other__") category = document.getElementById("customCategory").value.trim();
       const description = document.getElementById("desc").value.trim();
       const amount = parseFloat(document.getElementById("amount").value);
+      const tags = parseTags(document.getElementById("tags").value);
+      const note = document.getElementById("note").value.trim();
 
       const formError = document.getElementById("formError");
       if (!date || !category || !amount || amount <= 0) {
@@ -874,10 +1380,11 @@ service cloud.firestore {
       const saveBtn = document.getElementById("saveBtn");
       saveBtn.disabled = true;
       try {
+        const data = { date, category, description, amount, tags, note };
         if (editingId) {
-          await updateDoc(doc(db, "transactions", editingId), { date, category, description, amount });
+          await updateDoc(doc(db, "transactions", editingId), data);
         } else {
-          await addDoc(collection(db, "transactions"), { date, category, description, amount, createdAt: serverTimestamp() });
+          await addDoc(collection(db, "transactions"), { ...data, addedBy: me, createdAt: serverTimestamp() });
         }
         lastUsedCategory = category;
         closeForm();
@@ -889,21 +1396,28 @@ service cloud.firestore {
       }
     });
 
-    let pendingDeleteId = null;
-    const confirmOverlay = document.getElementById("confirmOverlay");
+    async function deleteWithUndo(id) {
+      const tx = transactions.find(t => t.id === id);
+      if (!tx) return;
+      const { id: _id, ...data } = tx;
+      try {
+        await deleteDoc(doc(db, "transactions", id));
+      } catch (e) {
+        alert("Couldn't delete: " + e.message);
+        return;
+      }
+      showToast("Expense deleted", "Undo", () => setDoc(doc(db, "transactions", id), data));
+    }
 
-    document.getElementById("txRows").addEventListener("click", async (e) => {
+    document.getElementById("txRows").addEventListener("click", (e) => {
       const editBtn = e.target.closest("[data-edit]");
       const deleteBtn = e.target.closest("[data-delete]");
-      const editId = editBtn ? editBtn.getAttribute("data-edit") : null;
-      const deleteId = deleteBtn ? deleteBtn.getAttribute("data-delete") : null;
-      if (editId) {
-        const tx = transactions.find(t => t.id === editId);
+      if (editBtn) {
+        const tx = transactions.find(t => t.id === editBtn.getAttribute("data-edit"));
         if (!tx) return;
-        editingId = editId;
+        editingId = tx.id;
         dateInput.value = tx.date;
-        const knownCategory = categories.some(c => c.name === tx.category);
-        if (knownCategory) {
+        if (categories.some(c => c.name === tx.category)) {
           categorySelect.value = tx.category;
           document.getElementById("customCategoryWrap").style.display = "none";
         } else {
@@ -913,50 +1427,328 @@ service cloud.firestore {
         }
         document.getElementById("desc").value = tx.description || "";
         document.getElementById("amount").value = tx.amount;
+        document.getElementById("tags").value = (tx.tags || []).join(", ");
+        document.getElementById("note").value = tx.note || "";
+        document.getElementById("moreDetails").open = !!((tx.tags || []).length || tx.note);
         document.getElementById("formTitle").textContent = "Edit expense";
         document.getElementById("saveBtn").textContent = "Save changes";
+        setDateChips();
         openForm();
-      } else if (deleteId) {
-        pendingDeleteId = deleteId;
-        confirmOverlay.classList.add("show");
+      } else if (deleteBtn) {
+        deleteWithUndo(deleteBtn.getAttribute("data-delete"));
       }
     });
 
+    // ---------- Confirm (recurring / goals) ----------
+    let pendingDelete = null;
+    const confirmOverlay = document.getElementById("confirmOverlay");
+    function askDelete(kind, id, text) {
+      pendingDelete = { kind, id };
+      document.getElementById("confirmText").textContent = text;
+      confirmOverlay.classList.add("show");
+    }
     document.getElementById("confirmCancel").addEventListener("click", () => {
-      pendingDeleteId = null;
+      pendingDelete = null;
       confirmOverlay.classList.remove("show");
     });
-
     document.getElementById("confirmDelete").addEventListener("click", async () => {
-      const id = pendingDeleteId;
+      const p = pendingDelete;
       confirmOverlay.classList.remove("show");
-      pendingDeleteId = null;
-      if (!id) return;
+      pendingDelete = null;
+      if (!p) return;
       try {
-        await deleteDoc(doc(db, "transactions", id));
+        await deleteDoc(doc(db, p.kind === "goal" ? "goals" : "recurring", p.id));
       } catch (e) {
         alert("Couldn't delete: " + e.message);
       }
     });
 
-    document.getElementById("monthFilter").addEventListener("change", renderTransactions);
-
     document.getElementById("exportBtn").addEventListener("click", () => {
-      const selectedMonth = document.getElementById("monthFilter").value;
-      const monthTx = transactions.filter(t => t.date.slice(0, 7) === selectedMonth)
-        .slice().sort((a, b) => a.date.localeCompare(b.date));
-      const header = "Date,Category,Description,Amount\n";
-      const rows = monthTx.map(t =>
-        `${t.date},"${t.category.replace(/"/g, '""')}","${(t.description || "").replace(/"/g, '""')}",${t.amount}`
-      ).join("\n");
-      const blob = new Blob([header + rows], { type: "text/csv" });
+      const rows = getFilteredTx().slice().sort((a, b) => a.date.localeCompare(b.date));
+      const q = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
+      const header = "Date,Category,Description,Amount,Tags,Note,Added by\n";
+      const body = rows.map(t => [t.date, q(t.category), q(t.description), t.amount, q((t.tags || []).join(" ")), q(t.note), q(t.addedBy)].join(",")).join("\n");
+      const blob = new Blob([header + body], { type: "text/csv" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `expenses-${selectedMonth}.csv`;
+      a.download = `expenses-${filt.month}.csv`;
       a.click();
       URL.revokeObjectURL(url);
     });
+
+    // ---------- Recurring expenses ----------
+    const dueDate = (y, m, day) => new Date(y, m, Math.min(day, new Date(y, m + 1, 0).getDate()));
+    const ordinal = n => { const s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
+    // Month key after which a new/resumed item starts posting: skips a due date that has already passed this month.
+    function startKey(day) {
+      const now = new Date();
+      return dueDate(now.getFullYear(), now.getMonth(), day) <= now
+        ? monthKeyLocal(now)
+        : monthKeyLocal(new Date(now.getFullYear(), now.getMonth() - 1, 1));
+    }
+
+    function renderRecurring() {
+      const active = recurring.filter(r => r.active !== false);
+      document.getElementById("recurringTotal").textContent = recurring.length
+        ? `${inr(active.reduce((s, r) => s + r.amount, 0))} / month across ${active.length} active`
+        : "Rent, EMIs and subscriptions post themselves on their due day.";
+      const now = new Date();
+      document.getElementById("recurringList").innerHTML = recurring.length ? recurring.slice().sort((a, b) => a.day - b.day).map(r => {
+        const paused = r.active === false;
+        const nd = (r.lastGenerated || "") < monthKeyLocal(now)
+          ? dueDate(now.getFullYear(), now.getMonth(), r.day)
+          : dueDate(now.getFullYear(), now.getMonth() + 1, r.day);
+        return `
+          <div class="item-card ${paused ? "paused" : ""}">
+            <div class="ic-top">
+              <div>
+                <div class="ic-title">${esc(r.name)} · ${inr(r.amount)}</div>
+                <div class="ic-sub">${ordinal(r.day)} of every month · ${esc(r.category)}</div>
+                <div class="ic-sub">${paused ? "Paused" : "Next: " + nd.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</div>
+              </div>
+              <div class="ic-actions">
+                <button class="btn-text" data-rec-toggle="${r.id}">${paused ? "Resume" : "Pause"}</button>
+                <button class="icon-btn" data-rec-edit="${r.id}" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="icon-btn danger" data-rec-del="${r.id}" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+              </div>
+            </div>
+          </div>`;
+      }).join("") : `<div class="legend-empty">No recurring expenses yet.</div>`;
+    }
+
+    let generating = false;
+    async function generateRecurring() {
+      if (generating) return;
+      generating = true;
+      try {
+        const now = new Date();
+        const curKey = monthKeyLocal(now);
+        for (const r of recurring) {
+          if (r.active === false || !r.lastGenerated) continue;
+          let [y, m] = r.lastGenerated.split("-").map(Number); // m is 1-based; m as 0-based index == next month
+          for (let guard = 0; guard < 24; guard++) {
+            if (m > 11) { m = 0; y++; }
+            const key = `${y}-${String(m + 1).padStart(2, "0")}`;
+            if (key > curKey) break;
+            const due = dueDate(y, m, r.day);
+            if (due > now) break;
+            await runTransaction(db, async (trx) => {
+              const ref = doc(db, "recurring", r.id);
+              const snap = await trx.get(ref);
+              const d = snap.data();
+              if (!d || d.active === false || (d.lastGenerated || "") >= key) return;
+              trx.set(doc(db, "transactions", `rec_${r.id}_${key}`), {
+                date: ymd(due), category: d.category, description: d.name, amount: d.amount,
+                tags: ["recurring"], note: "", addedBy: "Recurring", recurringId: r.id, createdAt: serverTimestamp()
+              });
+              trx.update(ref, { lastGenerated: key });
+            });
+            m++;
+          }
+        }
+      } catch (e) {
+        console.error("Recurring generation failed:", e);
+      } finally {
+        generating = false;
+      }
+    }
+
+    const recOverlay = document.getElementById("recOverlay");
+    let editingRecId = null;
+    document.getElementById("recCategory").innerHTML = categories.map(c => `<option value="${esc(c.name)}">${esc(c.name)}</option>`).join("");
+    function openRecForm(r) {
+      editingRecId = r ? r.id : null;
+      document.getElementById("recTitle").textContent = r ? "Edit recurring expense" : "Add recurring expense";
+      document.getElementById("recName").value = r ? r.name : "";
+      document.getElementById("recCategory").value = r && categories.some(c => c.name === r.category) ? r.category : categories[0].name;
+      document.getElementById("recAmount").value = r ? r.amount : "";
+      document.getElementById("recDay").value = r ? r.day : "";
+      document.getElementById("recError").style.display = "none";
+      recOverlay.classList.add("show");
+    }
+    document.getElementById("addRecurringBtn").addEventListener("click", () => openRecForm(null));
+    document.getElementById("recCancel").addEventListener("click", () => recOverlay.classList.remove("show"));
+    document.getElementById("recSave").addEventListener("click", async () => {
+      const name = document.getElementById("recName").value.trim();
+      const category = document.getElementById("recCategory").value;
+      const amount = parseFloat(document.getElementById("recAmount").value);
+      const day = parseInt(document.getElementById("recDay").value, 10);
+      const err = document.getElementById("recError");
+      if (!name || !(amount > 0) || !(day >= 1 && day <= 31)) {
+        err.textContent = "Enter a name, an amount and a day between 1 and 31.";
+        err.style.display = "block";
+        return;
+      }
+      const btn = document.getElementById("recSave");
+      btn.disabled = true;
+      try {
+        if (editingRecId) await updateDoc(doc(db, "recurring", editingRecId), { name, category, amount, day });
+        else await addDoc(collection(db, "recurring"), { name, category, amount, day, active: true, lastGenerated: startKey(day), createdAt: serverTimestamp() });
+        recOverlay.classList.remove("show");
+      } catch (e) {
+        err.textContent = "Couldn't save: " + e.message;
+        err.style.display = "block";
+      } finally {
+        btn.disabled = false;
+      }
+    });
+    document.getElementById("recurringList").addEventListener("click", async (e) => {
+      const tog = e.target.closest("[data-rec-toggle]");
+      const edit = e.target.closest("[data-rec-edit]");
+      const del = e.target.closest("[data-rec-del]");
+      try {
+        if (tog) {
+          const r = recurring.find(x => x.id === tog.dataset.recToggle);
+          if (!r) return;
+          if (r.active === false) await updateDoc(doc(db, "recurring", r.id), { active: true, lastGenerated: startKey(r.day) });
+          else await updateDoc(doc(db, "recurring", r.id), { active: false });
+        } else if (edit) {
+          openRecForm(recurring.find(x => x.id === edit.dataset.recEdit));
+        } else if (del) {
+          askDelete("recurring", del.dataset.recDel, "Delete this recurring expense? Past posted expenses stay.");
+        }
+      } catch (err) {
+        alert("Couldn't update: " + err.message);
+      }
+    });
+
+    // ---------- Savings goals ----------
+    function renderGoals() {
+      const saved = goals.reduce((s, g) => s + (g.saved || 0), 0);
+      document.getElementById("goalsTotal").textContent = goals.length
+        ? `${inr(saved)} saved across ${goals.length} goal${goals.length === 1 ? "" : "s"}`
+        : "Set aside money for something specific.";
+      const now = new Date();
+      document.getElementById("goalsList").innerHTML = goals.length ? goals.map(g => {
+        const savedAmt = g.saved || 0;
+        const done = savedAmt >= g.target;
+        let eta = "";
+        if (done) eta = "Goal reached";
+        else if (g.deadline) {
+          const dl = new Date(g.deadline + "T00:00:00");
+          const ml = (dl.getFullYear() - now.getFullYear()) * 12 + dl.getMonth() - now.getMonth();
+          eta = `By ${dl.toLocaleDateString("en-IN", { month: "short", year: "numeric" })} · ` + (ml > 0 ? `${inr((g.target - savedAmt) / ml)}/month to go` : "deadline reached");
+        }
+        return `
+          <div class="item-card">
+            <div class="ic-top">
+              <div>
+                <div class="ic-title">${esc(g.name)}</div>
+                <div class="ic-sub">${inr(savedAmt)} of ${inr(g.target)} · ${pct(Math.min(1, savedAmt / g.target))}</div>
+              </div>
+              <div class="ic-actions">
+                <button class="icon-btn" data-goal-edit="${g.id}" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="icon-btn danger" data-goal-del="${g.id}" aria-label="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>
+              </div>
+            </div>
+            <div class="goal-bar"><div style="width:${Math.min(100, (savedAmt / g.target) * 100)}%"></div></div>
+            <div class="ic-sub">${eta || "&nbsp;"}</div>
+            <div style="margin-top:12px;"><button class="btn-secondary btn-small" data-goal-money="${g.id}">Add / withdraw money</button></div>
+          </div>`;
+      }).join("") : `<div class="legend-empty">No goals yet.</div>`;
+    }
+
+    const goalOverlay = document.getElementById("goalOverlay");
+    let editingGoalId = null;
+    function openGoalForm(g) {
+      editingGoalId = g ? g.id : null;
+      document.getElementById("goalTitle").textContent = g ? "Edit savings goal" : "Add savings goal";
+      document.getElementById("goalName").value = g ? g.name : "";
+      document.getElementById("goalTarget").value = g ? g.target : "";
+      document.getElementById("goalDeadline").value = g ? (g.deadline || "") : "";
+      document.getElementById("goalError").style.display = "none";
+      goalOverlay.classList.add("show");
+    }
+    document.getElementById("addGoalBtn").addEventListener("click", () => openGoalForm(null));
+    document.getElementById("goalCancel").addEventListener("click", () => goalOverlay.classList.remove("show"));
+    document.getElementById("goalSave").addEventListener("click", async () => {
+      const name = document.getElementById("goalName").value.trim();
+      const target = parseFloat(document.getElementById("goalTarget").value);
+      const deadline = document.getElementById("goalDeadline").value;
+      const err = document.getElementById("goalError");
+      if (!name || !(target > 0)) {
+        err.textContent = "Enter a goal name and a target amount.";
+        err.style.display = "block";
+        return;
+      }
+      const btn = document.getElementById("goalSave");
+      btn.disabled = true;
+      try {
+        if (editingGoalId) await updateDoc(doc(db, "goals", editingGoalId), { name, target, deadline });
+        else await addDoc(collection(db, "goals"), { name, target, deadline, saved: 0, createdAt: serverTimestamp() });
+        goalOverlay.classList.remove("show");
+      } catch (e) {
+        err.textContent = "Couldn't save: " + e.message;
+        err.style.display = "block";
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    const moneyOverlay = document.getElementById("moneyOverlay");
+    let moneyGoalId = null;
+    async function applyMoney(sign) {
+      const g = goals.find(x => x.id === moneyGoalId);
+      const err = document.getElementById("moneyError");
+      let amt = parseFloat(document.getElementById("moneyAmount").value);
+      if (!g || !(amt > 0)) {
+        err.textContent = "Enter a valid amount.";
+        err.style.display = "block";
+        return;
+      }
+      if (sign < 0) amt = Math.min(amt, g.saved || 0);
+      try {
+        await updateDoc(doc(db, "goals", g.id), { saved: increment(sign * amt) });
+        moneyOverlay.classList.remove("show");
+      } catch (e) {
+        err.textContent = "Couldn't save: " + e.message;
+        err.style.display = "block";
+      }
+    }
+    document.getElementById("moneyAdd").addEventListener("click", () => applyMoney(1));
+    document.getElementById("moneyWithdraw").addEventListener("click", () => applyMoney(-1));
+    document.getElementById("moneyCancel").addEventListener("click", () => moneyOverlay.classList.remove("show"));
+    document.getElementById("goalsList").addEventListener("click", (e) => {
+      const money = e.target.closest("[data-goal-money]");
+      const edit = e.target.closest("[data-goal-edit]");
+      const del = e.target.closest("[data-goal-del]");
+      if (money) {
+        const g = goals.find(x => x.id === money.dataset.goalMoney);
+        if (!g) return;
+        moneyGoalId = g.id;
+        document.getElementById("moneyTitle").textContent = g.name;
+        document.getElementById("moneyAmount").value = "";
+        document.getElementById("moneyError").style.display = "none";
+        moneyOverlay.classList.add("show");
+        setTimeout(() => document.getElementById("moneyAmount").focus(), 60);
+      } else if (edit) {
+        openGoalForm(goals.find(x => x.id === edit.dataset.goalEdit));
+      } else if (del) {
+        askDelete("goal", del.dataset.goalDel, "Delete this goal?");
+      }
+    });
+
+    // ---------- Who's using this phone ----------
+    const nameOverlay = document.getElementById("nameOverlay");
+    const meBtn = document.getElementById("meBtn");
+    function renderMe() { meBtn.textContent = me ? `${me} ✎` : "Set your name"; }
+    meBtn.addEventListener("click", () => {
+      document.getElementById("nameInput").value = me;
+      nameOverlay.classList.add("show");
+    });
+    document.getElementById("nameSkip").addEventListener("click", () => {
+      sessionStorage.setItem("nameSkipped", "1");
+      nameOverlay.classList.remove("show");
+    });
+    document.getElementById("nameSave").addEventListener("click", () => {
+      me = document.getElementById("nameInput").value.trim();
+      localStorage.setItem(USER_KEY, me);
+      renderMe();
+      nameOverlay.classList.remove("show");
+    });
+    renderMe();
+    if (!me && !sessionStorage.getItem("nameSkipped")) nameOverlay.classList.add("show");
 
     resetForm();
 
@@ -979,6 +1771,22 @@ service cloud.firestore {
       onSnapshot(collection(db, "salaries"), (snapshot) => {
         salariesByMonth = {};
         snapshot.docs.forEach(d => { salariesByMonth[d.id] = d.data().amount; });
+        renderHome();
+      });
+
+      onSnapshot(collection(db, "recurring"), (snapshot) => {
+        recurring = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderRecurring();
+        generateRecurring();
+      });
+
+      onSnapshot(collection(db, "goals"), (snapshot) => {
+        goals = snapshot.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => (a.createdAt?.seconds || 0) - (b.createdAt?.seconds || 0));
+        renderGoals();
+      });
+
+      onSnapshot(doc(db, "settings", "prefs"), (snap) => {
+        prefs = { rollover: false, ...(snap.data() || {}) };
         renderHome();
       });
     });
