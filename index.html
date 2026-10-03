@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Expenses" />
+<meta name="theme-color" content="#0b1f3a" />
+<title>Expense Tracker</title>
+<style>
+  :root {
+    --navy: #0b1f3a;
+    --navy-2: #13294b;
+    --accent: #2e7d6b;
+    --accent-light: #e6f4f0;
+    --warn: #b4690e;
+    --warn-bg: #fdf3e6;
+    --danger: #a4262c;
+    --danger-bg: #fdeceb;
+    --ink: #1a2332;
+    --muted: #5c6b7a;
+    --line: #e3e8ef;
+    --card: #ffffff;
+    --bg: #f4f6f9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy), var(--navy-2));
+    color: #fff;
+    padding: 32px 28px 28px;
+  }
+  header h1 { margin: 0 0 4px; font-size: 22px; font-weight: 700; }
+  header p { margin: 0; color: #aebacb; font-size: 14px; }
+  .sync-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: #f0a500; }
+  .sync-dot.live { background: #4fd1a5; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 24px 20px 60px; }
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: -44px auto 28px;
+    max-width: 1040px;
+    padding: 0 20px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(11, 31, 58, 0.08);
+    border: 1px solid #eef1f5;
+  }
+  .card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px; }
+  .card .value { font-size: 26px; font-weight: 700; color: var(--navy); }
+  .card.hero { background: linear-gradient(135deg, var(--accent), #255f52); color: #fff; }
+  .card.hero .label { color: #cfe9e2; }
+  .card.hero .value { color: #fff; }
+  .card.over { background: linear-gradient(135deg, var(--danger), #7a1d22); color: #fff; }
+  .card.over .label { color: #f6d6d4; }
+  .card.over .value { color: #fff; }
+  .card .sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .card.hero .sub { color: #cfe9e2; }
+  .card.over .sub { color: #f6d6d4; }
+
+  h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); margin: 28px 0 12px; }
+
+  .panel {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(11,31,58,0.06);
+    border: 1px solid #eef1f5;
+    margin-bottom: 20px;
+  }
+  .form-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+  .field input, .field select {
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--ink);
+    background: #fff;
+  }
+  .field input:focus, .field select:focus { outline: 2px solid var(--accent-light); border-color: var(--accent); }
+  #desc { min-width: 220px; flex: 1; }
+  #amount { width: 130px; }
+  #date { width: 150px; }
+  #category, #customCategoryWrap input { width: 180px; }
+  button {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 18px;
+    min-height: 44px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #255f52; }
+  .btn-secondary { background: #eef1f5; color: var(--ink); }
+  .btn-secondary:hover { background: #e1e6ec; }
+  .btn-text { background: none; border: none; color: var(--muted); font-weight: 500; padding: 4px 8px; cursor: pointer; font-size: 13px; text-decoration: underline; }
+  .btn-text.danger { color: var(--danger); }
+
+  .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .toolbar .field { margin: 0; }
+
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(11,31,58,0.06); }
+  th, td { text-align: left; padding: 12px 14px; font-size: 14px; border-bottom: 1px solid #eef1f5; vertical-align: top; }
+  th { background: #f0f3f7; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+  tr:last-child td { border-bottom: none; }
+  td.amt { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  .item-name { font-weight: 600; }
+  .cat-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+  .color-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+  .bar-track { background: #eef1f5; border-radius: 6px; height: 8px; width: 120px; overflow: hidden; }
+  .bar-fill { background: var(--accent); height: 100%; border-radius: 6px; }
+  .bar-fill.over { background: var(--danger); }
+  .pct { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .empty-row td { text-align: center; color: var(--muted); padding: 28px; }
+
+  .note { background: var(--warn-bg); border: 1px solid #f3dcb8; border-radius: 12px; padding: 16px 18px; margin: 24px 0; font-size: 14px; }
+  .note strong { color: var(--warn); }
+  footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 32px; }
+
+  #setupScreen { max-width: 640px; margin: 60px auto; padding: 0 20px; }
+  #setupScreen .panel { font-size: 14px; }
+  #setupScreen ol { padding-left: 22px; }
+  #setupScreen li { margin-bottom: 10px; }
+  #setupScreen code { background: #eef1f5; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  #setupScreen pre { background: #0b1f3a; color: #d7e3f0; padding: 14px; border-radius: 8px; font-size: 12px; overflow-x: auto; }
+  #app { display: none; }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 20px 14px 60px; }
+    .summary { padding: 0 14px; }
+    .form-row { flex-direction: column; align-items: stretch; }
+    .form-row .field, #desc, #amount, #date, #category, #customCategory { width: 100% !important; min-width: 0; }
+    #saveBtn, #cancelEditBtn { width: 100%; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .toolbar button { width: 100%; }
+    table.responsive thead { display: none; }
+    table.responsive, table.responsive tbody, table.responsive tr, table.responsive td { display: block; width: 100%; }
+    table.responsive tr { margin-bottom: 12px; border: 1px solid var(--line); border-radius: 10px; padding: 4px 0; }
+    table.responsive tr:last-child { margin-bottom: 0; }
+    table.responsive td { border-bottom: none; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    table.responsive td[data-label]:not([data-label=""])::before {
+      content: attr(data-label);
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted); font-weight: 600; flex-shrink: 0;
+    }
+    table.responsive .empty-row td { display: block; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Shown until a real Firebase config is pasted in below -->
+<div id="setupScreen">
+  <div class="panel">
+    <h2 style="margin-top:0;">One-time setup needed</h2>
+    <p>This app needs a free Firebase project to store and sync data between phones. Takes about 5 minutes, no credit card.</p>
+    <ol>
+      <li>Go to <code>console.firebase.google.com</code> and create a project (any name, e.g. "household-expenses").</li>
+      <li>In the project, open <strong>Build &rarr; Firestore Database</strong> &rarr; Create database &rarr; start in <strong>production mode</strong> &rarr; pick any region.</li>
+      <li>Open <strong>Build &rarr; Authentication</strong> &rarr; Get started &rarr; enable the <strong>Anonymous</strong> sign-in provider.</li>
+      <li>In Firestore &rarr; <strong>Rules</strong> tab, replace the contents with this and click Publish:
+        <pre>rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}</pre>
+      </li>
+      <li>Back in Project settings (gear icon) &rarr; scroll to "Your apps" &rarr; click the <strong>&lt;/&gt; (Web)</strong> icon &rarr; register an app (any nickname) &rarr; copy the <code>firebaseConfig</code> object it shows you.</li>
+      <li>Send that config to Claude, or paste it yourself into <code>index.html</code> in place of the <code>FIREBASE_CONFIG</code> placeholder near the top of the script, then save and push.</li>
+    </ol>
+    <p style="color:var(--muted);">Until this is done, the app below won't load — this screen is a placeholder, not a bug.</p>
+  </div>
+</div>
+
+<div id="app">
+<header>
+  <h1>Expense Tracker</h1>
+  <p id="asof"><span class="sync-dot" id="syncDot"></span><span id="syncLabel">Connecting…</span></p>
+</header>
+
+<div class="summary" id="summary"></div>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="form-row" id="formRow">
+      <div class="field">
+        <label for="date">Date</label>
+        <input type="date" id="date" />
+      </div>
+      <div class="field">
+        <label for="category">Category</label>
+        <select id="category"></select>
+      </div>
+      <div class="field" id="customCategoryWrap" style="display:none;">
+        <label for="customCategory">Custom category name</label>
+        <input type="text" id="customCategory" placeholder="e.g. Pet care" />
+      </div>
+      <div class="field">
+        <label for="desc">Description</label>
+        <input type="text" id="desc" placeholder="e.g. Weekly groceries" />
+      </div>
+      <div class="field">
+        <label for="amount">Amount (₹)</label>
+        <input type="number" id="amount" min="0" step="1" placeholder="0" />
+      </div>
+      <button class="btn-primary" id="saveBtn">Add expense</button>
+      <button class="btn-secondary" id="cancelEditBtn" style="display:none;">Cancel</button>
+    </div>
+  </div>
+
+  <h2>Spending by category this month</h2>
+  <table id="catTable" class="responsive">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Budget target</th>
+        <th>Spent</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="catRows"></tbody>
+  </table>
+
+  <h2>Transactions</h2>
+  <div class="toolbar">
+    <div class="field">
+      <label for="monthFilter">Month</label>
+      <select id="monthFilter"></select>
+    </div>
+    <button class="btn-secondary" id="exportBtn">Export CSV (selected month)</button>
+  </div>
+  <table id="txTable" class="responsive">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="txRows"></tbody>
+  </table>
+
+  <div class="note">
+    <strong>Shared, synced data:</strong> every add/edit/delete here writes to a shared Firestore database — both phones see the same list, updated live. Anyone who opens this page is signed in anonymously and can read/write, so don't share the link outside your household.
+    Edit <code>monthlyIncome</code> and the <code>categories</code> list near the top of this file's &lt;script&gt; to change budget targets.
+  </div>
+
+  <footer>Hosted on GitHub Pages · data synced via Firebase Firestore</footer>
+</div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+  import {
+    getFirestore, collection, addDoc, updateDoc, deleteDoc, doc,
+    onSnapshot, query, orderBy, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+  import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+  // ------- PASTE YOUR FIREBASE CONFIG HERE -------
+  const FIREBASE_CONFIG = {
+    apiKey: "REPLACE_ME",
+    authDomain: "REPLACE_ME",
+    projectId: "REPLACE_ME",
+    storageBucket: "REPLACE_ME",
+    messagingSenderId: "REPLACE_ME",
+    appId: "REPLACE_ME"
+  };
+
+  // ------- EDIT YOUR BUDGET HERE -------
+  const monthlyIncome = 310000;
+
+  // target = null means "no fixed budget, just tracked" (variable spending categories)
+  const categories = [
+    { name: "Housing (EMIs)", target: 120100 },
+    { name: "Household help", target: 22900 },
+    { name: "Utilities", target: 16300 },
+    { name: "Family support", target: 7000 },
+    { name: "Subscriptions", target: 2179 },
+    { name: "Insurance RD", target: 23775 },
+    { name: "Groceries", target: null },
+    { name: "Fuel / Transport", target: null },
+    { name: "Dining & takeout", target: null },
+    { name: "Personal / Shopping", target: null },
+    { name: "Medical", target: null },
+    { name: "Miscellaneous", target: null }
+  ];
+  // --------------------------------------
+
+  if (FIREBASE_CONFIG.apiKey === "REPLACE_ME") {
+    document.getElementById("setupScreen").style.display = "block";
+    document.getElementById("app").style.display = "none";
+  } else {
+    document.getElementById("setupScreen").style.display = "none";
+    document.getElementById("app").style.display = "block";
+    runApp();
+  }
+
+  function runApp() {
+    const app = initializeApp(FIREBASE_CONFIG);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    const inr = n => "₹" + Math.round(n).toLocaleString("en-IN");
+    const pct = n => (n * 100).toFixed(1) + "%";
+    const CATEGORY_COLORS = ["#2e7d6b", "#0b5fa5", "#b4690e", "#7a4fa3", "#a4262c", "#1f8a70", "#4a5fc1", "#c2554d"];
+    function catColor(name) {
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
+      return CATEGORY_COLORS[hash % CATEGORY_COLORS.length];
+    }
+
+    const today = new Date();
+
+    let transactions = [];
+    let editingId = null;
+    let unsubscribe = null;
+
+    const categorySelect = document.getElementById("category");
+    categorySelect.innerHTML = categories.map(c => `<option value="${c.name}">${c.name}</option>`).join("")
+      + `<option value="__other__">Other (type custom)</option>`;
+    categorySelect.addEventListener("change", () => {
+      document.getElementById("customCategoryWrap").style.display =
+        categorySelect.value === "__other__" ? "flex" : "none";
+    });
+
+    const dateInput = document.getElementById("date");
+    dateInput.value = today.toISOString().slice(0, 10);
+
+    function currentMonthKey(d) { return d.toISOString().slice(0, 7); }
+    function monthLabel(key) {
+      const [y, m] = key.split("-").map(Number);
+      return new Date(y, m - 1, 1).toLocaleDateString("en-IN", { month: "long", year: "numeric" });
+    }
+    function allMonthKeys() {
+      const keys = new Set(transactions.map(t => t.date.slice(0, 7)));
+      keys.add(currentMonthKey(today));
+      return Array.from(keys).sort().reverse();
+    }
+    function populateMonthFilter() {
+      const sel = document.getElementById("monthFilter");
+      const prevValue = sel.value || currentMonthKey(today);
+      const keys = allMonthKeys();
+      sel.innerHTML = keys.map(k => `<option value="${k}">${monthLabel(k)}</option>`).join("");
+      sel.value = keys.includes(prevValue) ? prevValue : keys[0];
+    }
+
+    function resetForm() {
+      editingId = null;
+      document.getElementById("saveBtn").textContent = "Add expense";
+      document.getElementById("cancelEditBtn").style.display = "none";
+      document.getElementById("desc").value = "";
+      document.getElementById("amount").value = "";
+      document.getElementById("customCategory").value = "";
+      document.getElementById("customCategoryWrap").style.display = "none";
+      categorySelect.value = categories[0].name;
+      dateInput.value = today.toISOString().slice(0, 10);
+    }
+
+    function render() {
+      populateMonthFilter();
+      const selectedMonth = document.getElementById("monthFilter").value;
+      const monthTx = transactions.filter(t => t.date.slice(0, 7) === selectedMonth);
+
+      const totalSpent = monthTx.reduce((s, t) => s + t.amount, 0);
+      const remaining = monthlyIncome - totalSpent;
+      const overBudget = totalSpent > monthlyIncome;
+
+      document.getElementById("summary").innerHTML = `
+        <div class="card">
+          <div class="label">Monthly income</div>
+          <div class="value">${inr(monthlyIncome)}</div>
+          <div class="sub">${monthLabel(selectedMonth)}</div>
+        </div>
+        <div class="card">
+          <div class="label">Spent this month</div>
+          <div class="value">${inr(totalSpent)}</div>
+          <div class="sub">${pct(totalSpent / monthlyIncome)} of income · ${monthTx.length} transaction(s)</div>
+        </div>
+        <div class="card ${overBudget ? "over" : "hero"}">
+          <div class="label">${overBudget ? "Over budget by" : "Remaining"}</div>
+          <div class="value">${inr(Math.abs(remaining))}</div>
+          <div class="sub">${overBudget ? "spending exceeded income this month" : pct(remaining / monthlyIncome) + " of income left"}</div>
+        </div>
+      `;
+
+      const spentByCat = {};
+      monthTx.forEach(t => { spentByCat[t.category] = (spentByCat[t.category] || 0) + t.amount; });
+      const allCatNames = Array.from(new Set([...categories.map(c => c.name), ...Object.keys(spentByCat)]));
+      const targetMap = {};
+      categories.forEach(c => { targetMap[c.name] = c.target; });
+
+      const catRowsData = allCatNames
+        .map(name => ({ name, target: targetMap[name] ?? null, spent: spentByCat[name] || 0 }))
+        .filter(r => r.target != null || r.spent > 0)
+        .sort((a, b) => b.spent - a.spent);
+
+      const maxForBar = Math.max(1, ...catRowsData.map(r => Math.max(r.target || 0, r.spent)));
+
+      document.getElementById("catRows").innerHTML = catRowsData.length ? catRowsData.map(r => {
+        const over = r.target != null && r.spent > r.target;
+        const barPct = Math.min(100, (r.spent / maxForBar) * 100);
+        const color = catColor(r.name);
+        return `
+          <tr>
+            <td data-label="Category" class="item-name"><span class="color-dot" style="background:${color}"></span>${r.name}</td>
+            <td data-label="Budget target" class="amt">${r.target != null ? inr(r.target) : "—"}</td>
+            <td data-label="Spent" class="amt" style="color:${over ? "var(--danger)" : "var(--ink)"}">${inr(r.spent)}</td>
+            <td data-label="">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="bar-track"><div class="bar-fill ${over ? "over" : ""}" style="width:${barPct}%"></div></div>
+                ${r.target != null ? `<span class="pct">${pct(r.spent / r.target)}</span>` : ""}
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("") : `<tr class="empty-row"><td colspan="4">No spending recorded for ${monthLabel(selectedMonth)} yet.</td></tr>`;
+
+      const sorted = monthTx.slice().sort((a, b) => b.date.localeCompare(a.date));
+      document.getElementById("txRows").innerHTML = sorted.length ? sorted.map(t => `
+        <tr>
+          <td data-label="Date">${new Date(t.date + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</td>
+          <td data-label="Category"><span class="cat-tag" style="background:${catColor(t.category)}22; color:${catColor(t.category)}">${t.category}</span></td>
+          <td data-label="Description">${t.description || "—"}</td>
+          <td data-label="Amount" class="amt">${inr(t.amount)}</td>
+          <td data-label="">
+            <button class="btn-text" data-edit="${t.id}">Edit</button>
+            <button class="btn-text danger" data-delete="${t.id}">Delete</button>
+          </td>
+        </tr>
+      `).join("") : `<tr class="empty-row"><td colspan="5">No transactions for ${monthLabel(selectedMonth)}.</td></tr>`;
+    }
+
+    document.getElementById("saveBtn").addEventListener("click", async () => {
+      const date = dateInput.value;
+      let category = categorySelect.value;
+      if (category === "__other__") category = document.getElementById("customCategory").value.trim();
+      const description = document.getElementById("desc").value.trim();
+      const amount = parseFloat(document.getElementById("amount").value);
+
+      if (!date || !category || !amount || amount <= 0) {
+        alert("Please fill in date, category and a valid amount.");
+        return;
+      }
+
+      const saveBtn = document.getElementById("saveBtn");
+      saveBtn.disabled = true;
+      try {
+        if (editingId) {
+          await updateDoc(doc(db, "transactions", editingId), { date, category, description, amount });
+        } else {
+          await addDoc(collection(db, "transactions"), { date, category, description, amount, createdAt: serverTimestamp() });
+        }
+        resetForm();
+      } catch (e) {
+        alert("Couldn't save: " + e.message);
+      } finally {
+        saveBtn.disabled = false;
+      }
+    });
+
+    document.getElementById("cancelEditBtn").addEventListener("click", resetForm);
+
+    document.getElementById("txRows").addEventListener("click", async (e) => {
+      const editId = e.target.getAttribute("data-edit");
+      const deleteId = e.target.getAttribute("data-delete");
+      if (editId) {
+        const tx = transactions.find(t => t.id === editId);
+        if (!tx) return;
+        editingId = editId;
+        dateInput.value = tx.date;
+        const knownCategory = categories.some(c => c.name === tx.category);
+        if (knownCategory) {
+          categorySelect.value = tx.category;
+          document.getElementById("customCategoryWrap").style.display = "none";
+        } else {
+          categorySelect.value = "__other__";
+          document.getElementById("customCategoryWrap").style.display = "flex";
+          document.getElementById("customCategory").value = tx.category;
+        }
+        document.getElementById("desc").value = tx.description || "";
+        document.getElementById("amount").value = tx.amount;
+        document.getElementById("saveBtn").textContent = "Save changes";
+        document.getElementById("cancelEditBtn").style.display = "inline-block";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (deleteId) {
+        if (!confirm("Delete this transaction?")) return;
+        try {
+          await deleteDoc(doc(db, "transactions", deleteId));
+        } catch (e) {
+          alert("Couldn't delete: " + e.message);
+        }
+      }
+    });
+
+    document.getElementById("monthFilter").addEventListener("change", render);
+
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const selectedMonth = document.getElementById("monthFilter").value;
+      const monthTx = transactions.filter(t => t.date.slice(0, 7) === selectedMonth)
+        .slice().sort((a, b) => a.date.localeCompare(b.date));
+      const header = "Date,Category,Description,Amount\n";
+      const rows = monthTx.map(t =>
+        `${t.date},"${t.category.replace(/"/g, '""')}","${(t.description || "").replace(/"/g, '""')}",${t.amount}`
+      ).join("\n");
+      const blob = new Blob([header + rows], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `expenses-${selectedMonth}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    resetForm();
+
+    const syncDot = document.getElementById("syncDot");
+    const syncLabel = document.getElementById("syncLabel");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user && !unsubscribe) {
+        const q = query(collection(db, "transactions"), orderBy("date", "desc"));
+        unsubscribe = onSnapshot(q, (snapshot) => {
+          transactions = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          syncDot.classList.add("live");
+          syncLabel.textContent = "Live · synced";
+          render();
+        }, (err) => {
+          syncLabel.textContent = "Sync error: " + err.message;
+        });
+      }
+    });
+
+    signInAnonymously(auth).catch((e) => {
+      syncLabel.textContent = "Couldn't connect: " + e.message;
+    });
+  }
+</script>
+</body>
+</html>
