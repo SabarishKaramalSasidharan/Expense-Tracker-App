@@ -41,13 +41,26 @@
   .sync-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: #f0a500; }
   .sync-dot.live { background: #4fd1a5; }
   .wrap { max-width: 1040px; margin: 0 auto; padding: 24px 20px 110px; }
-  .summary {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin: 0 0 24px;
+  .sum-card {
+    background: var(--card); border-radius: 14px; padding: 20px; margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(11, 31, 58, 0.08); border: 1px solid #eef1f5;
+    min-height: 196px;
   }
-  .summary:has(.card:only-child) { max-width: 280px; margin-inline: auto; }
+  .sum-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .sum-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+  .sum-value { font-size: 32px; font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+  .sum-of { font-size: 13px; color: var(--muted); }
+  .sum-bar { height: 8px; background: #eef1f5; border-radius: 6px; overflow: hidden; margin: 14px 0 6px; }
+  .sum-bar > div { height: 100%; background: var(--accent); border-radius: 6px; }
+  .sum-bar.over > div { background: var(--danger); }
+  .sum-caption { font-size: 12px; color: var(--muted); min-height: 18px; }
+  .sum-caption.over { color: var(--danger); font-weight: 600; }
+  .sum-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #eef1f5; }
+  .sum-stat { min-width: 0; }
+  .sum-stat .k { font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); display: flex; align-items: center; gap: 2px; white-space: nowrap; }
+  .sum-stat .v { font-size: 15px; font-weight: 700; color: var(--navy); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .sum-stat .v.over { color: var(--danger); }
+  .sum-stat .v.good { color: var(--accent); }
   .card {
     background: var(--card);
     border-radius: 14px;
@@ -293,9 +306,7 @@ service cloud.firestore {
 
 <div class="wrap">
   <div id="tab-home" class="tab-panel active">
-    <div class="summary" id="summary"></div>
-
-    <div class="period-switch">
+    <div class="period-switch" role="tablist" aria-label="Time period">
       <button data-period="day">Day</button>
       <button data-period="week">Week</button>
       <button data-period="month" class="active">Month</button>
@@ -307,6 +318,8 @@ service cloud.firestore {
       <div id="periodLabel"></div>
       <button id="periodNext" aria-label="Next period">&rsaquo;</button>
     </div>
+
+    <div class="sum-card" id="summary"></div>
 
     <div class="panel chart-card">
       <div class="donut-wrap">
@@ -630,63 +643,72 @@ service cloud.firestore {
     }
 
     function buildSummaryCards(range, periodTx, totalSpent) {
-      if (periodType === "month") {
-        const monthKey = monthKeyLocal(range.start);
-        const salary = salariesByMonth[monthKey];
-        const hasSalary = typeof salary === "number";
-        const remaining = hasSalary ? salary - totalSpent : null;
-        const overBudget = hasSalary && totalSpent > salary;
-        return `
-          <div class="card" id="salaryCard" data-month="${monthKey}">
-            <div class="label">Salary <button class="salary-edit-btn" id="salaryEditBtn" aria-label="Edit salary">&#9998;</button></div>
-            <div class="value">${hasSalary ? inr(salary) : "Not set"}</div>
-            <div class="sub">${range.label}</div>
-          </div>
-          <div class="card">
-            <div class="label">Spent</div>
-            <div class="value">${inr(totalSpent)}</div>
-            <div class="sub">${hasSalary ? pct(totalSpent / salary) + " of salary · " : ""}${periodTx.length} transaction(s)</div>
-          </div>
-          <div class="card ${!hasSalary ? "" : (overBudget ? "over" : "hero")}">
-            <div class="label">${!hasSalary ? "Set salary to track" : (overBudget ? "Over budget by" : "Remaining")}</div>
-            <div class="value">${hasSalary ? inr(Math.abs(remaining)) : "—"}</div>
-            <div class="sub">${!hasSalary ? "Tap the pencil above" : (overBudget ? "spending exceeded salary" : pct(remaining / salary) + " left")}</div>
-          </div>
-        `;
-      }
-      if (periodType === "year") {
-        const year = range.start.getFullYear();
-        let totalIncome = 0, monthsSet = 0;
-        for (let m = 0; m < 12; m++) {
-          const k = `${year}-${String(m + 1).padStart(2, "0")}`;
-          if (typeof salariesByMonth[k] === "number") { totalIncome += salariesByMonth[k]; monthsSet++; }
+      const stat = (k, v, cls = "", extra = "") => `<div class="sum-stat"><div class="k">${k}${extra}</div><div class="v ${cls}">${v}</div></div>`;
+      const n = periodTx.length;
+      let income = null, barPct = 0, over = false, caption = "", mid, right, incomeStat;
+      const left = stat("Transactions", n);
+
+      if (periodType === "month" || periodType === "year") {
+        if (periodType === "month") {
+          const monthKey = monthKeyLocal(range.start);
+          const s = salariesByMonth[monthKey];
+          income = typeof s === "number" ? s : null;
+          incomeStat = stat("Salary", income != null ? inr(income) : "Not set", "",
+            `<button class="salary-edit-btn" id="salaryEditBtn" data-month="${monthKey}" aria-label="Edit salary">&#9998;</button>`);
+        } else {
+          const year = range.start.getFullYear();
+          let total = 0, set = 0;
+          for (let m = 0; m < 12; m++) {
+            const k = `${year}-${String(m + 1).padStart(2, "0")}`;
+            if (typeof salariesByMonth[k] === "number") { total += salariesByMonth[k]; set++; }
+          }
+          income = set ? total : null;
+          incomeStat = stat("Income", income != null ? inr(income) : "Not set");
+          if (set && set < 12) caption = `Income set for ${set} of 12 months`;
         }
-        const remaining = totalIncome - totalSpent;
-        const overBudget = totalIncome > 0 && totalSpent > totalIncome;
-        return `
-          <div class="card">
-            <div class="label">Income (${monthsSet}/12 months set)</div>
-            <div class="value">${inr(totalIncome)}</div>
-            <div class="sub">${range.label}</div>
-          </div>
-          <div class="card">
-            <div class="label">Spent</div>
-            <div class="value">${inr(totalSpent)}</div>
-            <div class="sub">${periodTx.length} transaction(s)</div>
-          </div>
-          <div class="card ${totalIncome === 0 ? "" : (overBudget ? "over" : "hero")}">
-            <div class="label">${totalIncome === 0 ? "No income set" : (overBudget ? "Over by" : "Remaining")}</div>
-            <div class="value">${totalIncome === 0 ? "—" : inr(Math.abs(remaining))}</div>
-            <div class="sub">${totalIncome === 0 ? "Set salaries in Month view" : (overBudget ? "spending exceeded income" : pct(remaining / totalIncome) + " left")}</div>
-          </div>
-        `;
+        if (income != null) {
+          const rem = income - totalSpent;
+          over = rem < 0;
+          barPct = Math.min(100, (totalSpent / income) * 100);
+          mid = incomeStat;
+          right = stat(over ? "Over by" : "Remaining", inr(Math.abs(rem)), over ? "over" : "good");
+          caption = over ? "Spending exceeded income" : (caption || `${pct(rem / income)} left`);
+        } else {
+          mid = incomeStat;
+          right = stat("Remaining", "—");
+          caption = periodType === "month" ? "Tap the pencil to set this month's salary" : "Set salaries in Month view";
+        }
+        return sumHtml(totalSpent, income != null ? `of ${inr(income)}` : "", barPct, over, caption, [left, mid, right]);
       }
+
+      const top = {};
+      periodTx.forEach(t => { top[t.category] = (top[t.category] || 0) + t.amount; });
+      const topCat = Object.entries(top).sort((a, b) => b[1] - a[1])[0];
+      const topStat = stat("Top category", topCat ? topCat[0] : "—");
+      if (periodType === "week") {
+        mid = stat("Avg / day", inr(totalSpent / 7));
+      } else {
+        mid = stat("Largest", n ? inr(Math.max(...periodTx.map(t => t.amount))) : "—");
+      }
+      const monthSalary = salariesByMonth[monthKeyLocal(range.start)];
+      if (typeof monthSalary === "number" && monthSalary > 0) {
+        barPct = Math.min(100, (totalSpent / monthSalary) * 100);
+        caption = `${pct(totalSpent / monthSalary)} of ${range.start.toLocaleDateString("en-IN", { month: "short" })} salary`;
+      } else {
+        caption = "Set the month's salary to see this as a share of it";
+      }
+      return sumHtml(totalSpent, "", barPct, false, caption, [left, mid, topStat]);
+    }
+
+    function sumHtml(spent, of, barPct, over, caption, stats) {
       return `
-        <div class="card hero">
-          <div class="label">Spent</div>
-          <div class="value">${inr(totalSpent)}</div>
-          <div class="sub">${range.label} · ${periodTx.length} transaction(s)</div>
+        <div class="sum-top">
+          <div><div class="sum-label">Spent</div><div class="sum-value">${inr(spent)}</div></div>
+          <div class="sum-of">${of}</div>
         </div>
+        <div class="sum-bar ${over ? "over" : ""}"><div style="width:${barPct}%"></div></div>
+        <div class="sum-caption ${over ? "over" : ""}">${caption}</div>
+        <div class="sum-stats">${stats.join("")}</div>
       `;
     }
 
@@ -772,7 +794,7 @@ service cloud.firestore {
     const salaryOverlay = document.getElementById("salaryOverlay");
     document.getElementById("summary").addEventListener("click", (e) => {
       if (!e.target.closest("#salaryEditBtn")) return;
-      const monthKey = document.getElementById("salaryCard").dataset.month;
+      const monthKey = e.target.closest("#salaryEditBtn").dataset.month;
       salaryOverlay.dataset.month = monthKey;
       document.getElementById("salaryMonthLabel").textContent = monthLabel(monthKey);
       const existing = salariesByMonth[monthKey];
