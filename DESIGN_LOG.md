@@ -4,6 +4,7 @@ Source for all entries below: Claude Code working sessions with Sabarish (no ext
 
 ## Decisions
 
+- 2026-10-04 — Logo is a spending donut (green/amber/blue segments) with a white ₹ on the navy header gradient. Why: echoes the Home chart and the existing palette; there was no logo or home-screen icon before.
 - 2026-10-04 — Home period controls (Day/Week/Month/Year + prev/next) sit above the summary, and the summary is one fixed-shape card for every period. Why: the old summary changed from 3 cards to 1 above the controls, so the controls jumped on every tap.
 - 2026-10-04 — Unused budget rollover is opt-in (toggle on Home, stored in Firestore `settings/prefs`), envelope-style: carries unspent amounts forward from the first transaction month, overspend does not go negative. Why: avoids silently changing budget numbers.
 - 2026-10-04 — Recurring expenses post automatically on their due day, starting from the next due date (not retroactively). Why: avoids duplicating an expense the user already entered by hand for the current month.
@@ -20,6 +21,7 @@ Source for all entries below: Claude Code working sessions with Sabarish (no ext
 
 ## Iterations
 
+- 2026-10-04 — Added logo: header mark, favicon (`icon.svg`), home-screen icon (`apple-touch-icon.png`), 512px `icon-512.png`.
 - 2026-10-04 — Added: budget progress bars and "safe to spend per day"; comparison vs previous period (summary and per category); daily/monthly bar charts with tap-to-drill; Day view lists the day's biggest expenses; search and category/person/month filters; "added by" names and a "who spent" split; amount-first add form with recent-category chips and Today/Yesterday; recurring expenses; undo on delete; tags and notes; savings goals; optional budget rollover; last period choice remembered, tap label to jump to today, swipe to change period.
 - 2026-10-04 — Fixed: Prev/Next on the 31st skipped months (month arithmetic now clamps the day); default dates used UTC and could be a day behind before 5:30am IST.
 - 2026-10-04 — Home layout stabilised (commit 2157cbb).

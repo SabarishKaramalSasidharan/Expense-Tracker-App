@@ -6,6 +6,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-title" content="Expenses" />
 <meta name="theme-color" content="#0b1f3a" />
+<link rel="icon" type="image/svg+xml" href="icon.svg" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 <title>Expense Tracker</title>
 <style>
   :root {
@@ -36,7 +38,9 @@
     color: #fff;
     padding: 32px 28px 28px;
   }
-  header h1 { margin: 0 0 4px; font-size: 22px; font-weight: 700; }
+  header h1 { margin: 0; font-size: 22px; font-weight: 700; }
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .logo { width: 36px; height: 36px; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(255,255,255,0.12); border-radius: 9px; }
   header p { margin: 0; color: #aebacb; font-size: 14px; }
   .sync-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: #f0a500; }
   .sync-dot.live { background: #4fd1a5; }
@@ -393,7 +397,21 @@ service cloud.firestore {
 
 <div id="app">
 <header>
-  <h1>Expense Tracker</h1>
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 512 512" aria-hidden="true">
+      <defs><linearGradient id="logoBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d3b68"/><stop offset="1" stop-color="#0b1f3a"/></linearGradient></defs>
+      <rect width="512" height="512" rx="112" fill="url(#logoBg)"/>
+      <g fill="none" transform="rotate(-90 256 256)">
+        <circle cx="256" cy="256" r="130" stroke="#4fd1a5" stroke-width="56" stroke-dasharray="466 350.8"/>
+        <circle cx="256" cy="256" r="130" stroke="#f0a500" stroke-width="56" stroke-dasharray="188 628.8" stroke-dashoffset="-474"/>
+        <circle cx="256" cy="256" r="130" stroke="#8fb4dc" stroke-width="56" stroke-dasharray="139 677.8" stroke-dashoffset="-670"/>
+      </g>
+      <g transform="translate(256 256) scale(1.4)" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M-30-36H32M-30-16H32"/><path d="M-22-36H-2C26-36 26-6-2-6H-22L22 40"/>
+      </g>
+    </svg>
+    <h1>Expense Tracker</h1>
+  </div>
   <p id="asof"><span class="sync-dot" id="syncDot"></span><span id="syncLabel">Connecting…</span><button class="me-btn" id="meBtn"></button></p>
 </header>
 
