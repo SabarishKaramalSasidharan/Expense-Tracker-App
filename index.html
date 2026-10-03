@@ -142,6 +142,15 @@
   #setupScreen pre { background: #0b1f3a; color: #d7e3f0; padding: 14px; border-radius: 8px; font-size: 12px; overflow-x: auto; }
   #app { display: none; }
 
+  #pinScreen { display: none; max-width: 360px; margin: 100px auto; padding: 0 20px; text-align: center; }
+  #pinScreen .panel { font-size: 14px; }
+  #pinScreen input {
+    width: 100%; padding: 14px; margin-top: 14px; border: 1px solid var(--line); border-radius: 8px;
+    font-size: 22px; letter-spacing: 6px; text-align: center; font-family: inherit;
+  }
+  #pinScreen button { width: 100%; margin-top: 12px; }
+  #pinScreen .pin-error { color: var(--danger); font-size: 13px; margin-top: 10px; display: none; }
+
   @media (max-width: 640px) {
     .wrap { padding: 20px 14px 60px; }
     .summary { padding: 0 14px; }
@@ -189,6 +198,16 @@ service cloud.firestore {
       <li>Send that config to Claude, or paste it yourself into <code>index.html</code> in place of the <code>FIREBASE_CONFIG</code> placeholder near the top of the script, then save and push.</li>
     </ol>
     <p style="color:var(--muted);">Until this is done, the app below won't load — this screen is a placeholder, not a bug.</p>
+  </div>
+</div>
+
+<div id="pinScreen">
+  <div class="panel">
+    <h2 style="margin-top:0;">Enter household PIN</h2>
+    <p style="color:var(--muted); margin-bottom:0;">This just keeps out stray visitors — not real security.</p>
+    <input type="password" inputmode="numeric" id="pinInput" maxlength="8" autofocus />
+    <div class="pin-error" id="pinError">Wrong PIN, try again.</div>
+    <button class="btn-primary" id="pinSubmit">Unlock</button>
   </div>
 </div>
 
@@ -309,13 +328,33 @@ service cloud.firestore {
   ];
   // --------------------------------------
 
+  // Not real security — just a speed bump so a stray link click doesn't open your data.
+  const APP_PIN = "1804";
+  const PIN_UNLOCK_KEY = "expenseTrackerUnlocked";
+
   if (FIREBASE_CONFIG.apiKey === "REPLACE_ME") {
     document.getElementById("setupScreen").style.display = "block";
-    document.getElementById("app").style.display = "none";
-  } else {
-    document.getElementById("setupScreen").style.display = "none";
+  } else if (localStorage.getItem(PIN_UNLOCK_KEY) === "true") {
     document.getElementById("app").style.display = "block";
     runApp();
+  } else {
+    document.getElementById("pinScreen").style.display = "block";
+    const pinInput = document.getElementById("pinInput");
+    const pinError = document.getElementById("pinError");
+    function tryUnlock() {
+      if (pinInput.value === APP_PIN) {
+        localStorage.setItem(PIN_UNLOCK_KEY, "true");
+        document.getElementById("pinScreen").style.display = "none";
+        document.getElementById("app").style.display = "block";
+        runApp();
+      } else {
+        pinError.style.display = "block";
+        pinInput.value = "";
+        pinInput.focus();
+      }
+    }
+    document.getElementById("pinSubmit").addEventListener("click", tryUnlock);
+    pinInput.addEventListener("keydown", (e) => { if (e.key === "Enter") tryUnlock(); });
   }
 
   function runApp() {
