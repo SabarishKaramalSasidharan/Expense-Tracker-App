@@ -335,9 +335,11 @@ service cloud.firestore {
   if (FIREBASE_CONFIG.apiKey === "REPLACE_ME") {
     document.getElementById("setupScreen").style.display = "block";
   } else if (localStorage.getItem(PIN_UNLOCK_KEY) === "true") {
+    document.getElementById("setupScreen").style.display = "none";
     document.getElementById("app").style.display = "block";
     runApp();
   } else {
+    document.getElementById("setupScreen").style.display = "none";
     document.getElementById("pinScreen").style.display = "block";
     const pinInput = document.getElementById("pinInput");
     const pinError = document.getElementById("pinError");
