@@ -15,12 +15,14 @@ Source for all entries below: Claude Code working sessions with Sabarish (no ext
 
 ## Review feedback
 
+- 2026-10-04 — Sabarish, chat: the ₹ in the logo is broken. Status: addressed (redrawn with a full bowl, two bars and a longer leg; the exact symptom was not described).
 - 2026-10-04 — Sabarish, chat: Home period buttons are "a total mess", top and bottom change when switching. Status: addressed (commit 2157cbb).
 - 2026-10-04 — Sabarish, chat: asked for competitor research and the missing best features/UX, then "do all the 9". Status: addressed (see Iterations). Research covered feature existence from marketing pages only; competitor UI layouts were not verified.
 - 2026-10 — Sabarish, chat: bottom nav icons overflowing the bar. Status: addressed (commit 6744c3e).
 
 ## Iterations
 
+- 2026-10-04 — Redrew the ₹ in the logo (`icon.svg`, header mark, regenerated `apple-touch-icon.png` and `icon-512.png`). The first version's bowl was too flat and the bars nearly merged.
 - 2026-10-04 — Added logo: header mark, favicon (`icon.svg`), home-screen icon (`apple-touch-icon.png`), 512px `icon-512.png`.
 - 2026-10-04 — Added: budget progress bars and "safe to spend per day"; comparison vs previous period (summary and per category); daily/monthly bar charts with tap-to-drill; Day view lists the day's biggest expenses; search and category/person/month filters; "added by" names and a "who spent" split; amount-first add form with recent-category chips and Today/Yesterday; recurring expenses; undo on delete; tags and notes; savings goals; optional budget rollover; last period choice remembered, tap label to jump to today, swipe to change period.
 - 2026-10-04 — Fixed: Prev/Next on the 31st skipped months (month arithmetic now clamps the day); default dates used UTC and could be a day behind before 5:30am IST.

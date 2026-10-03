@@ -11,8 +11,8 @@
     <circle cx="256" cy="256" r="130" stroke="#f0a500" stroke-width="56" stroke-dasharray="188 628.8" stroke-dashoffset="-474"/>
     <circle cx="256" cy="256" r="130" stroke="#8fb4dc" stroke-width="56" stroke-dasharray="139 677.8" stroke-dashoffset="-670"/>
   </g>
-  <g transform="translate(256 256) scale(1.4)" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M-30-36H32M-30-16H32"/>
-    <path d="M-22-36H-2C26-36 26-6-2-6H-22L22 40"/>
+  <g transform="translate(256 246) scale(1.4)" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M-30-34H32M-30-14H32"/>
+    <path d="M-24-34H0C28-34 28 10 0 10H-24L24 48"/>
   </g>
 </svg>
