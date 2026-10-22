@@ -681,15 +681,18 @@ service cloud.firestore {
   // Salary itself is NOT set here — it's entered per month from the Home tab (tap the pencil
   // next to Salary in Month view) and stored in Firestore so past months stay accurate.
   const categories = [
-    { name: "Housing (EMIs)", target: 120100 },
+    { name: "Housing (EMIs)", target: 120000 },
     { name: "Household help", target: 22900 },
-    { name: "Utilities", target: 16300 },
-    { name: "Family support", target: 7000 },
-    { name: "Subscriptions", target: 2179 },
-    { name: "Insurance RD", target: 23775 },
-    { name: "Groceries", target: null },
+    { name: "Utilities", target: 9500 },
+    { name: "Family support", target: 8500 },
+    { name: "Subscriptions", target: 1800 },
+    { name: "Insurance RD", target: 23860 },
+    { name: "Maintenance RD", target: 6900 },
+    { name: "Investment", target: 28500 },
+    { name: "Gold chit", target: 15000 },
+    { name: "Groceries", target: 10000 },
     { name: "Fuel / Transport", target: null },
-    { name: "Dining & takeout", target: null },
+    { name: "Dining & takeout", target: 10000 },
     { name: "Personal / Shopping", target: null },
     { name: "Medical", target: null },
     { name: "Miscellaneous", target: null }
